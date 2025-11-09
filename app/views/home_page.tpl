@@ -26,11 +26,12 @@
         <nav class="main-nav>
             div class="container nav-content">
                 <div= class="dropdown">
-                    <button class="dropbtn">Matérias <i class="fas fa-caret-down"></i></button>
+                    <br><button class="dropbtn">Matérias <i class="fas fa-caret-down"></i></button><br>
                     <div id="materiasDropdown" class="dropdown-content">
-                        <a href="#">materia 1</a>
-                        <a href="#">Zayra linda</a>
+                        <br><a href="#">materia 1</a> <br>
+                        <a href="#">Zayra linda</a> <br>
                         <a href="#">Zayra chata</a>
+                        <br>
                     </div>
                 </div>
 
@@ -45,8 +46,8 @@
         <h2>Seu hub de ajuda Acadêmica para momentos de desespero<//h2>
         <p>Conecte-se com estudantes especializados para qualquer trabalho ou atividade.</p>
 
-        <div> class="actions">
-            <button id="btnSolicitar" class="btn primary>Publique seu Pedido</button>
+        <div class="actions">
+            <button id="btnSolicitar" class="btn primary">Publique seu Pedido</button><br>
             <button id="btnVerTrabalhos" class="btn secondary">Quero Executar Traballhos</button>
         </div>
     </section>
@@ -61,9 +62,9 @@
     <section id="avliacoes" class="avaliacoes-section">
         <h2 class="section-title">O que nossos Usuários dizem</h2>
         <div class="card-grid">
-            <div class="review-card">"Rápido e serviço de alta qualidade. Recomendo!"</div>
-            <div class="review-card>"Ótima forma de ganhar uma renda extra com oq já estudou."</div>
-            <div class="review-card>"As criadoras são muito lindas e inteligentes."</div>
+            <div class="review-card">@anonimus: <br>"Rápido e serviço de alta qualidade. Recomendo!"</div>
+            <div class="review-card">@anonimus: <br>"Ótima forma de ganhar uma renda extra com oq já estudou."</div>
+            <div class="review-card">"@anonimus: <br>As criadoras são muito lindas e inteligentes."</div>
         </div>
     </section>
 
@@ -72,7 +73,7 @@
         <div class="container footer-grid">
             <div class="footer-column">
                 <h4>Student Help</h4>
-                <a href="/">Matérias</a>
+                <a href="/">Matérias</a> <br>
                 <a href="#about">Sobre nós</a>
             </div>
             <div class="footer-column">
