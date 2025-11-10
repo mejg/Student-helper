@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
-    <!-- Header -->
+
     <header class="header">
         <div class="container">
             <nav class="navbar">
@@ -38,7 +38,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- inicio ali -->
     <section id="inicio" class="hero">
         <div class="container">
             <div class="hero-content">
@@ -94,7 +94,7 @@
         </div>
     </section>
 
-    <!-- Matérias Section -->
+    <!-- Matérias -->
     <section id="materias" class="materias-section">
         <div class="container">
             <div class="section-header">
@@ -268,7 +268,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- rodapé do sapo não lavaa o pé -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -330,5 +330,6 @@
     </footer>
 
     <script src="/static/main.js"></script>
+
 </body>
 </html>
