@@ -228,8 +228,7 @@
                         </div>
                     </div>
                     <p class="avaliacao-text">
-                        "Finalmente consegui entender literatura brasileira! A plataforma 
-                        é muito intuitiva e os preços são justos."
+                        "Lindo, criadora linda e gostosa."
                     </p>
                     <div class="avaliacao-materia">
                         <i class="fas fa-book"></i>
