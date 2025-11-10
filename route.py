@@ -11,8 +11,24 @@ def serve_static(filepath):
     return static_file(filepath, root='./app/static')
 
 @app.route('/', method="get")
-def home_page():
-    return ctl.render('home_page')
+def home_page():    return ctl.render('home_page')
+
+@app.route('/login', method="get")
+def login():    return ctl.render('')
+
+@app.route('/login', method="post")
+def login_post():   return ctl.render('login_post')
+
+@app.route('/logout', method="get")
+def logout():    return ctl.render('logout')
+
+@app.route('/cadastrar', method='get')
+def cadastrar(): return ctl.render('cadastrar')
+
+@app.route('/cadastrar', method='post')
+def cadastrar_post(): return ctl.render('cadastrar_post')
+
+
 
 if __name__ == '__main__':
 
