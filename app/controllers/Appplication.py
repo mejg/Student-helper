@@ -1,28 +1,36 @@
-from bottle import template, request,response,redirect
+from bottle import template, request, response, redirect
+
 
 
 class Application():
     def __init__(self):
         self.pages = {
-            'home_page' : self.home_page
-        #     'cadastrar': self.cadastrar,
-        #     'perfil-cliente': self.perfil_cliente,
-        #     'perfil-prestador': self.perfil_prestador,
-        #     'pedidos': self.pedidos,
-        #     'meus-pedidos': self.meus_pedidos,
-        #     'pedidos-criar': self.pedidos_criar,
-        #     'servicos': self.servico,
-        #     'mensagens': self.mensagens,
+            'home_page': self.home_page,
+            'login': self.login,
+            'login_post': self.login_post,
+            'logout': self.logout,
+            'cadastrar': self.cadastrar,
+            'cadastrar_post': self.cadastrar_post,
+            'perfil': self.perfil,
+            'pedidos': self.pedidos,
+            'pedidos_criar': self.pedidos_criar,
+            'pedidos_edit': self.pedidos_edit,
+            'pedidos_edit_post': self.pedidos_edit_post,
+            'pedidos_aceitar':self.pedidos_aceitar,
+            'pedidos_criar_post': self.pedidos_criar_post,
+            'pedidos_deletar_post': self.pedidos_delete,
+            'avaliar_get':self.avaliar_get,
+            'avaliar_post': self.avaliar_post
         }
+
 
     def render(self, page):
         content = self.pages.get(page)
         return content()
 
-
     def home_page(self):
-        usuario=request.get_cookie('usuario_id')
-        #tipo=request.get_cookie('tipo_usuario')
+        usuario = request.get_cookie('usuario_id')
+        # tipo=request.get_cookie('tipo_usuario')
         if not usuario:
             return template("app/views/home_page.tpl")
         return template('app/views/home_page_logada.tpl')
@@ -31,9 +39,15 @@ class Application():
         return template('app/views/login.tpl')
 
     def login_post(self):
-        email=request.forms.get('email')
-        senha=request.forms.get('senha')
-        #TODO: Usuario.autenticar(email,senha)
+        email = request.forms.get('email')
+        senha = request.forms.get('senha')
+        # usuario=Usuario.autenticar(email,senha)
+        # TODO: Usuario.autenticar(email,senha)
+        # if usuario:
+        #     response.set_cookie('usuario_id',str(usuario.id))
+        #     redirect('/')
+        # else:
+        #     return template('/login') #TODO: adicionar um erro talvez, na hora que não acha
 
     def logout(self):
         response.delete_cookie('usuario_id')
@@ -43,11 +57,59 @@ class Application():
         return template('app/views/cadastrar.tpl')
 
     def cadastrar_post(self):
-        nome=request.forms.get('nome')
-        email=request.forms.get('email')
-        senha=request.foms.get('senha')
-        tipo=request.forms.get('tipo')
+        nome = request.forms.get('nome')
+        email = request.forms.get('email')
+        senha = request.foms.get('senha')
+        tipo = request.forms.get('tipo')
 
-        #TODO: Usuario.cadastrar_usuario(nome,email,senha,tipo)
+        # TODO: Usuario.cadastrar_usuario(nome,email,senha,tipo)
+        redirect('/login')
 
-    def 
+    def perfil(self):
+        usuario_id = request.get_cookie('usuario_id')
+        # if not ususario_id:
+        #     redirect('/login')
+        # usuario=Usuario.buscar_usuario(usuario_id)#TODO:buscar_usuario
+        # return template('/perfil', usuario=usuario)#passar essa variavel pro html eu acho
+
+    def pedidos(self):
+        usuario_id = int(request.get_cookie('usuario_id'))
+        # usuario= Usuario.buscar_usuario(usuario_id)#TODO:buscar
+        # if usuario.tipo == 'cliente':
+        #     return template('app/views/pedidos_cliente', usuario=usuario_id)
+        # else:
+        #     return template('app/views/pedidos')
+
+    def pedidos_criar(self):
+        return template('app/views/pedidos_criar')
+
+    def pedidos_criar_post(self):
+        titulo = request.forms.get('titulo')
+        descricao = request.forms.get('descricao')
+        criador = request.get_cookie('usuario_id')
+        # Usuario.criar_pedido #TODO:criar_pedido
+
+    def pedidos_edit(self):
+        return template('app/views/pedidos_edit')
+
+    def pedidos_edit_post(self):
+        titulo = request.forms.get('titulo')
+        descricao = request.forms.get('descricao')
+        criador = request.get_cookie('usuario_id')
+        # Usuario.editar_pedido #TODO
+
+    def pedidos_aceitar(self):
+
+        pass
+
+    def pedidos_delete(self,id_pedido):
+        return template('app/views/view_teste.tpl', id_pedido_tpl=id_pedido)
+
+
+    def avaliar_get(self):
+        return template('app/views/avaliar')
+
+    def avaliar_post(self,id_pedido):
+        pass
+        #Pedido.add_avaliacao() #TODO
+        # return template()#igual ao do delete
