@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // === Inicialização principal ===
     initApp();
 
     function initApp() {
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setupBotoes();
     }
 
-    // === Dados das matérias ===
     const materiasData = [
         {
             id: 1,
@@ -85,17 +83,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
-    // === Função para carregar as matérias ===
     function carregarMaterias(categoria = 'all') {
         const grid = document.getElementById('materiasGrid');
-        grid.innerHTML = ''; // limpa o conteúdo anterior
+        grid.innerHTML = ''; 
 
-        // filtra se necessário
         const filtradas = categoria === 'all'
             ? materiasData
             : materiasData.filter(m => m.categoria === categoria);
 
-        // cria os cards dinamicamente
         filtradas.forEach(materia => {
             const card = document.createElement('div');
             card.classList.add('materia-card');
@@ -110,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // === Filtros (botões de Exatas, Humanas etc.) ===
     function setupFiltros() {
         const botoes = document.querySelectorAll('.filter-btn');
         botoes.forEach(btn => {
@@ -123,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // === Botões da área hero (Solicitar e Oferecer ajuda) ===
     function setupBotoes() {
         const solicitar = document.getElementById('btnSolicitar');
         const oferecer = document.getElementById('btnOferecer');
