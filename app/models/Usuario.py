@@ -14,6 +14,7 @@ class Usuario():
         self.salt=os.urandom(16)
         self.senha_hash=hashlib.sha256(self.salt+ str(senha).encode()).hexdigest()
         Usuario.todos_usuarios.append(self)
+        print('rodou no usuario')
 
     def __repr__(self):
         return f'Id:{self.id} | Usuário:{self.nome} | Email:{self.email}'
@@ -24,14 +25,14 @@ class Usuario():
 
     @classmethod
     def autenticar(cls,email,senha):
-        for u in Usuario.todos_usuarios:
+        for u in cls.todos_usuarios:
             if u.email==email and u.verificar_senha(senha):
                 return u
         return None
 
     @classmethod
     def buscar_id(cls,id):
-        for u in Usuario.todos_usuarios:
+        for u in cls.todos_usuarios:
             if u.id==id:
                 return u
         return None
@@ -49,3 +50,14 @@ class Usuario():
     def excluir_usuario(self):
         if self in self.__class__.todos_usuarios:
             self.__class__.todos_usuarios.remove(self)
+
+    def to_dict(self):
+        pass
+
+    def from_dict(self):
+        pass
+
+    @classmethod
+    def listar_todos(cls):
+        for u in cls.todos_usuarios:
+            print(u.__repr__())
