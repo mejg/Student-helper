@@ -4,17 +4,19 @@ import hashlib
 
 class Usuario():
     todos_usuarios=[]
-    def __init__(self,nome,email,senha,tipo=None):
+    def __init__(self,nome,email,senha,tipo=None,from_dict=False,salt=None,senha_hash=None):
         self.__id=uuid.uuid4()
         self.nome=nome
         self.email=email
-        # self.senha=senha
         self.tipo=tipo
         #senha criptografada:
-        self.salt=os.urandom(16)
-        self.senha_hash=hashlib.sha256(self.salt+ str(senha).encode()).hexdigest()
+        if from_dict:
+            self.salt=bytes.fromhex(salt)
+            self.senha_hash=senha_hash
+        else:
+            self.salt=os.urandom(16)
+            self.senha_hash=hashlib.sha256(self.salt+ str(senha).encode()).hexdigest()
         Usuario.todos_usuarios.append(self)
-        print('rodou no usuario')
 
     def __repr__(self):
         return f'Id:{self.id} | Usuário:{self.nome} | Email:{self.email}'
@@ -37,6 +39,12 @@ class Usuario():
                 return u
         return None
 
+    @classmethod
+    def buscar_por_email(cls,email):
+        for u in cls.todos_usuarios:
+            if u.email==email:
+                return u
+
     def verificar_senha(self,senha):
         tentativa_senha=hashlib.sha256(self.salt+str(senha).encode()).hexdigest()
         return tentativa_senha == self.senha_hash
@@ -51,11 +59,6 @@ class Usuario():
         if self in self.__class__.todos_usuarios:
             self.__class__.todos_usuarios.remove(self)
 
-    def to_dict(self):
-        pass
-
-    def from_dict(self):
-        pass
 
     @classmethod
     def listar_todos(cls):

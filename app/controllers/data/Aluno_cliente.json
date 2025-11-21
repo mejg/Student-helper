@@ -1,0 +1,15 @@
+[
+    {
+        "id": "7345c2fd-53dc-471e-b821-a2e41add9ced",
+        "nome": "zayra",
+        "email": "zayra@",
+        "tipo": "cliente",
+        "senha_hash": "f4c59468e135d9da753a232fc4dccd0dbf9293e9cf3749b6474bd1648e0361b8",
+        "salt": "7dac0f88d02d824c945a06e62159c839",
+        "self.pedidos": [],
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
+    }
+]
