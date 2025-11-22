@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDENT HELP | Freelancer Acadêmico</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script src="/static/js/main.js"></script>
 </head>
 <body>
 
@@ -51,14 +52,15 @@
                     Ajuda rápida, confiável e acessível.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn btn-large btn-accent" id="btnSolicitar">
+                    <a href="/pedidos_criar" class="btn btn-large btn-accent" id="btnSolicitar">
                         <i class="fas fa-rocket"></i>
                         Solicitar Ajuda
-                    </button>
+                    </a>
                     <button class="btn btn-large btn-outline" id="btnOferecer">
                         <i class="fas fa-hand-holding-heart"></i>
                         Oferecer Ajuda
                     </button>
+                </div>
                 </div>
                 
                 <div class="hero-stats">
@@ -188,7 +190,7 @@
                             </div>
                             <div class="user-details">
                                 <div class="user-name">Karollyna Eloáh</div>
-                                <div class="user-course">Vagabundagem</div>
+                                <div class="user-course">Engenharia Mecanica</div>
                             </div>
                         </div>
                         <div class="rating">
@@ -200,7 +202,7 @@
                         </div>
                     </div>
                     <p class="avaliacao-text">
-                        "Eu achei o site muito ruim, as criadoras são duas preguiçosas"
+                        "Consegui ajuda no meu projeto em menos de 24h. O estudante que me ajudou foi incrível!"
                     </p>
                     <div class="avaliacao-materia">
                         <i class="fas fa-calculator"></i>
@@ -228,7 +230,7 @@
                         </div>
                     </div>
                     <p class="avaliacao-text">
-                        "Lindo, criadora linda e gostosa."
+                        ""Finalmente consegui entender direito penal! A plataforma é muito intuitiva e os preços são justos.""
                     </p>
                     <div class="avaliacao-materia">
                         <i class="fas fa-book"></i>
@@ -244,7 +246,7 @@
                             </div>
                             <div class="user-details">
                                 <div class="user-name">Gabriel Lactose</div>
-                                <div class="user-course">Engenharias</div>
+                                <div class="user-course">Medicina</div>
                             </div>
                         </div>
                         <div class="rating">
@@ -256,11 +258,11 @@
                         </div>
                     </div>
                     <p class="avaliacao-text">
-                        "Me ajudou bastante sou burro e feio e não sei de nada e nem fazer nada."
+                        "A plataforma é fantástica, me salvou em anatomia no período de provas.."
                     </p>
                     <div class="avaliacao-materia">
                         <i class="fas fa-brain"></i>
-                        Orientação a Obejetos
+                        Anatomia
                     </div>
                 </div>
             </div>
@@ -328,7 +330,6 @@
         </div>
     </footer>
 
-    <script src="/static/main.js"></script>
 
 </body>
 </html>

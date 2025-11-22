@@ -1,9 +1,15 @@
 from bottle import template, request, response, redirect
-
+import os
+import uuid
+from app.controllers.DataRecord import DataRecord
+from app.models.Pedidos import PedidoAcademico
+from app.models.Usuario import Usuario
+from app.models.Aluno_cliente import Aluno_cliente
 
 
 class Application():
     def __init__(self):
+        self.models = DataRecord(filename = "app_data.json") #falata .json ainda
         self.pages = {
             'home_page': self.home_page,
             'login': self.login,
@@ -23,6 +29,10 @@ class Application():
             'avaliar_post': self.avaliar_post
         }
 
+        Usuario.todos_usuarios.clear()
+        PedidoAcademico.todos_pedidos.clear()
+        self.models.read(Usuario.todos_usuarios, PedidoAcademico.todos_pedidos)  # a chamada aciona o DataRecord.read() que vai ter que implementar la no banco, ai lá tá pra 1 argumento ai tem que adicionar pra 3
+       
 
     def render(self, page):
         content = self.pages.get(page)
@@ -34,6 +44,34 @@ class Application():
         if not usuario:
             return template("app/views/home_page.tpl")
         return template('app/views/home_page_logada.tpl')
+
+    def pedidos_criar(self):
+        return template('app/views/pedidos_criar.tpl')
+
+    def pedidos_criar_post(self):
+        dados_do_form = {
+            'titulo': request.forms.get('titulo'),
+            'descricao': request.forms.get('descricao'),
+            'materia': request.forms.get('materia'),
+            'valor_str': request.forms.get('valor'),
+            'prazo': request.forms.get('prazo'),
+        }
+
+        try:
+            criador_id = str(Usuario.todos_usuarios[0].id) #Substituir pelo ID do usuário logado tipo request.get_cookie('usuario_id')
+        except IndexError:
+            criador_id = "Teste cliente" #pra não travar com a lista de usu vazia
+        #aqui vai fazer a validação do salamento e vai chamar algo do tipo self.models.save() do banco, ai se vc quiser mudar, pode mudar não sei muito bem como vc vai fazer, sorry, ai se for mudar, tem que mudar em pedidos tbm
+        novo_pedido, erro = PedidoAcademico.criar_e_salvar(
+            data_record_instance = self.models,
+            criador_id = criador_id,
+            **dados_do_form
+        )
+
+        if erro:
+            return f"Erro 400: {erro}", 400
+
+        return redirect('/pedidos')
 
     def login(self):
         return template('app/views/login.tpl')

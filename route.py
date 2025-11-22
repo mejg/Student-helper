@@ -7,7 +7,7 @@ ctl= Application()
 
 #Rotas
 #rotas login:
-@app.route('/static/<filepath:path>')
+@app.route('/static/<filepath:path>', method='GET')
 def serve_static(filepath):
     return static_file(filepath, root='./app/static')
 
