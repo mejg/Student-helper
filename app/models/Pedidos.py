@@ -1,15 +1,18 @@
 import uuid
 from datetime import datetime
+from app.controllers.DataRecord import DataRecord
+
 
 class PedidoAcademico():
     
     todos_pedidos = []
+    db=DataRecord("Pedidos.json")
     status_aberto = "Aberto (Aguardando prestador)"
     status_andamento = "Em Andamento"
     status_concluido = "Concluído (Aguardando avaliação)"
     status_cancelado = "Cancelado"
 
-    def __init__(self, titulo, materia, descricao, valor, prazo, autor_id, status= None):
+    def __init__(self, titulo, materia, descricao, valor, prazo, autor_id, status= None,from_json=False):
         self.id = str(uuid.uuid4()) 
         self.titulo = titulo
         self.materia = materia
@@ -23,9 +26,11 @@ class PedidoAcademico():
         self.data_conclusao = None
 
         PedidoAcademico.todos_pedidos.append(self)
+        if not from_json:
+            self.db.add(self)
 
     @classmethod 
-    def criar_e_salvar(cls, data_record_instance, titulo, materia, descricao,valor_str, prazo, criador_id):
+    def criar_e_salvar(cls, titulo, materia, descricao,valor_str, prazo, criador_id):
 
         try:
             valor = float(valor_str)
@@ -44,7 +49,7 @@ class PedidoAcademico():
             autor_id = criador_id
         )
 
-        data_record_instance.save() #implementar no banco
+        # data_record_instance.save() #implementar no banco
         return novo_pedido, None
 
     def to_dict(self):
@@ -71,7 +76,8 @@ class PedidoAcademico():
             valor = data['valor'],
             autor_id = str(data['autor_id']), #depois altera para uuid.UUID
             prazo = data['prazo'],
-            status = data['status']
+            status = data['status'],
+            from_json=True
         )
         
     def alterar_status(self, novo_status):
@@ -89,3 +95,8 @@ class PedidoAcademico():
         
     def __repr__(self):
         return f"ID {self.id[:8]} - Pedidos: {self.titulo} - Status: {self.status}"
+
+    @classmethod
+    def load_from_file(cls):
+        for d in cls.db.get_all():
+            cls.from_dict(d)

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicar Pedido | Student Help</title>
-    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/CSS/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -25,6 +25,7 @@
             <form action="/pedidos_criar" method="post">
                 
                 <div class="form-group">
+                    <br><br><br>
                     <label for="titulo">Título do Pedido:</label>
                     <input type="text" id="titulo" name="titulo" required placeholder="Ex: Resolução de 5 exercícios de Cálculo I">
                 </div>

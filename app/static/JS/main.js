@@ -1,12 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    initApp();
-
-    function initApp() {
-        carregarMaterias();
-        setupFiltros();
-        setupBotoes();
-    }
 
 
     const materiasData = [
@@ -134,4 +127,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
+
+    function initApp() {
+        carregarMaterias();
+        setupFiltros();
+        setupBotoes();
+    }
+
+    initApp();
 });

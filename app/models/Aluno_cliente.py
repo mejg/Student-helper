@@ -27,23 +27,22 @@ class Aluno_cliente(Usuario):
             'salt': self.salt.hex(),
             'self.pedidos': self.pedidos,
             'carteira': self.carteira.to_dict()
-            # 'pedidos_criados': self.pedidos_criados,
-            # 'pedidos_em_andamento': self.pedidos_em_andamento,
-            # 'pedidos_finalizados': self.pedidos_finalizados
         }
 
     @classmethod
     def from_dict(cls,data):
-        return cls(
+        obj=cls(
             data['nome'],
             data['email'],
             senha=None,
             tipo=data['tipo'],
             from_dict=True,
             salt=data['salt'],
-            senha_hash=data['senha_hash'],
-            carteira=Carteira.from_dict(data['carteira'])
-        )
+            senha_hash=data['senha_hash'])
+        obj.carteira=Carteira.from_dict(data['carteira'])
+        return obj
+
+
 
     def criar_pedido(self):
         pass

@@ -29,4 +29,5 @@ class Carteira:
 
     @classmethod
     def from_dict(cls,data):
-        return cls(saldo=data.get['saldo'],transacoes=data.get(['transacoes'],[]))
+        return cls(saldo=data.get('saldo'),transacoes=data.get('transacoes',[]))
+
