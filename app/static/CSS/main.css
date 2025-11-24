@@ -216,6 +216,30 @@ body {
     background: 
         radial-gradient(circle at 20% 80%, rgba(0, 102, 204, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(0, 168, 150, 0.1) 0%, transparent 50%);
+        
+    2) Evitar que o pseudo-elemento capture cliques: adicionar pointer-events:none e ajustar z-index dos botões em [main.css](http://_vscodecontentref_/9)
+    ```css
+    ```css
+    // filepath: [main.css](http://_vscodecontentref_/10)
+    // ...existing code...
+    
+    .hero::before {
+        pointer-events: none; 
+    }
+    
+   
+    .hero-actions {
+        position: relative;
+        z-index: 50;
+    }
+    
+   
+    #btnSolicitar,
+    #btnOferecer {
+        position: relative;
+        z-index: 60;
+        pointer-events: auto;
+    }pointer-events: none;
 }
 
 .hero .container {

@@ -116,14 +116,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const oferecer = document.getElementById('btnOferecer');
 
         if (solicitar) {
-            solicitar.addEventListener('click', () => {
-                alert("🔹 Solicitação de ajuda iniciada!");
+            solicitar.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '/pedidos_criar';
             });
         }
 
         if (oferecer) {
-            oferecer.addEventListener('click', () => {
-                alert("💡 Você pode oferecer ajuda agora!");
+            oferecer.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                window.location.href = '/oferecer_ajuda';
             });
         }
     }

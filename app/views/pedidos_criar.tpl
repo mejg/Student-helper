@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicar Pedido | Student Help</title>
-    <link rel="stylesheet" href="/static/CSS/main.css">
+    <link rel="stylesheet" href="/static/CSS/pedidos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -18,55 +18,76 @@
         </div>
     </header>
 
-    <div class="form-container">
-        <div class="form-card">
-            <h2><i class="fas fa-file-invoice"></i> Publicar Novo Pedido</h2>
-            
-            <form action="/pedidos_criar" method="post">
-                
-                <div class="form-group">
-                    <br><br><br>
-                    <label for="titulo">Título do Pedido:</label>
-                    <input type="text" id="titulo" name="titulo" required placeholder="Ex: Resolução de 5 exercícios de Cálculo I">
-                </div>
-                
-                <div class="two-columns">
-                    <div class="form-group">
-                        <label for="materia">Matéria:</label>
-                        <select id="materia" name="materia" required>
-                            <option value="">Selecione a matéria</option>
-                            <option value="oo">Orientação a Objetos</option>
-                            <option value="calculo">Cálculo I/II/III</option>
-                            <option value="direito_penal">Direito Penal</option>
-                            <option value="logica">Lógica e Algoritmos</option>
-                            <option value="biologia">Biologia</option>
-                        </select>
-                    </div>
+    <main>
+        <div class="container">
+            <div class="form-container">
+                <div class="form-card">
+                    <h2><i class="fas fa-file-invoice"></i> Publicar Novo Pedido</h2>
                     
-                    <div class="form-group">
-                        <label for="valor">Valor Oferecido (R$):</label>
-                        <input type="number" step="0.01" id="valor" name="valor" required placeholder="Ex: 50.00">
-                    </div>
-                </div>
+                    <form id="pedidoForm" action="/pedidos_criar" method="post">
+                        
+                        <div class="form-group">
+                            <label for="titulo">Título do Pedido:</label>
+                            <input type="text" id="titulo" name="titulo" required placeholder="Ex: Resolução de 5 exercícios de Cálculo I">
+                        </div>
+                        
+                        <div class="two-columns">
+                            <div class="form-group">
+                                <label for="materia">Matéria:</label>
+                                <select id="materia" name="materia" required>
+                                    <option value="">Selecione a matéria</option>
+                                    <option value="oo">Orientação a Objetos</option>
+                                    <option value="calculo">Cálculo I/II/III</option>
+                                    <option value="direito_penal">Direito Penal</option>
+                                    <option value="logica">Lógica e Algoritmos</option>
+                                    <option value="biologia">Biologia</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="valor">Valor Oferecido (R$):</label>
+                                <input type="number" step="0.01" id="valor" name="valor" required placeholder="Ex: 50.00">
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="prazo">Prazo de Entrega:</label>
-                    <input type="date" id="prazo" name="prazo" required>
+                        <div class="form-group">
+                            <label for="prazo">Prazo de Entrega:</label>
+                            <input type="date" id="prazo" name="prazo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="descricao">Descrição Completa:</label>
+                            <textarea id="descricao" name="descricao" rows="8" required placeholder="Descreva os requisitos, formato, links e qualquer detalhe crucial."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-large btn-accent">
+                            <i class="fas fa-paper-plane"></i> Publicar Pedido
+                        </button>
+                        
+                    </form>
                 </div>
-                
-                <div class="form-group">
-                    <label for="descricao">Descrição Completa:</label>
-                    <textarea id="descricao" name="descricao" rows="8" required placeholder="Descreva os requisitos, format, links e qualquer detalhe crucial."></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-large btn-accent btn-submit">
-                    <i class="fas fa-paper-plane"></i> Publicar Pedido
-                </button>
-                
-            </form>
+            </div>
         </div>
-    </div>
+        
+        <!-- Lista flutuante de matérias -->
+        <div class="materias-floating">
+            <h3><i class="fas fa-book"></i> Matérias Populares</h3>
+            <ul class="materias-list">
+                <li data-value="calculo"><i class="fas fa-calculator"></i> Cálculo</li>
+                <li data-value="oo"><i class="fas fa-code"></i> Programação</li>
+                <li data-value="direito_penal"><i class="fas fa-gavel"></i> Direito</li>
+                <li data-value="biologia"><i class="fas fa-dna"></i> Biologia</li>
+                <li data-value="logica"><i class="fas fa-brain"></i> Lógica</li>
+            </ul>
+        </div>
+    </main>
     
-    <script src="/static/main.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Student Help. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="/static/JS/pedidos.js"></script>
 </body>
 </html>

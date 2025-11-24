@@ -6,7 +6,7 @@
     <title>STUDENT HELP | Freelancer Acadêmico</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/CSS/main.css">
-    <script src="/static/JS/main.js"></script>
+    <script src="/static/JS/main.js" defer></script>
 </head>
 <body>
 
@@ -52,15 +52,14 @@
                     Ajuda rápida, confiável e acessível.
                 </p>
                 <div class="hero-actions">
-                    <a href="/pedidos_criar" class="btn btn-large btn-accent" id="btnSolicitar">
+                    <button class="btn btn-large btn-accent" id="btnSolicitar">
                         <i class="fas fa-rocket"></i>
                         Solicitar Ajuda
-                    </a>
+                    </button>
                     <button class="btn btn-large btn-outline" id="btnOferecer">
                         <i class="fas fa-hand-holding-heart"></i>
                         Oferecer Ajuda
                     </button>
-                </div>
                 </div>
                 
                 <div class="hero-stats">
@@ -190,7 +189,7 @@
                             </div>
                             <div class="user-details">
                                 <div class="user-name">Karollyna Eloáh</div>
-                                <div class="user-course">Engenharia Mecanica</div>
+                                <div class="user-course">Engenharia Mecânica</div>
                             </div>
                         </div>
                         <div class="rating">
@@ -218,7 +217,7 @@
                             </div>
                             <div class="user-details">
                                 <div class="user-name">Kauê Victor</div>
-                                <div class="user-course">Direito</div>
+                                <div class="user-course">Letras</div>
                             </div>
                         </div>
                         <div class="rating">
@@ -230,11 +229,11 @@
                         </div>
                     </div>
                     <p class="avaliacao-text">
-                        ""Finalmente consegui entender direito penal! A plataforma é muito intuitiva e os preços são justos.""
+                        "Finalmente consegui entender literatura brasileira! A plataforma é muito intuitiva e os preços são justos."
                     </p>
                     <div class="avaliacao-materia">
                         <i class="fas fa-book"></i>
-                        Direito Penal
+                        Literatura
                     </div>
                 </div>
                 
@@ -258,7 +257,7 @@
                         </div>
                     </div>
                     <p class="avaliacao-text">
-                        "A plataforma é fantástica, me salvou em anatomia no período de provas.."
+                        "A plataforma é fantástica, me salvou em anatomia no período de provas."
                     </p>
                     <div class="avaliacao-materia">
                         <i class="fas fa-brain"></i>
