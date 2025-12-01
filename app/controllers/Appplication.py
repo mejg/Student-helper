@@ -79,8 +79,14 @@ class Application():
     def login_post(self):
         email = request.forms.get('email')
         senha = request.forms.get('senha')
-        # usuario=Usuario.autenticar(email,senha)
-        # TODO: Usuario.autenticar(email,senha)
+        resultado = Usuario.autenticar(email,senha)
+        if not resultado:
+            return "usuário não encontrado"
+        if resultado:
+            tipo,usuario = resultado
+            response.set_cookie('usuario_id',str(usuario.id))
+            response.set_cookie('tipo_usuario',tipo)
+            redirect('/')
         # if usuario:
         #     response.set_cookie('usuario_id',str(usuario.id))
         #     redirect('/')
@@ -97,10 +103,13 @@ class Application():
     def cadastrar_post(self):
         nome = request.forms.get('nome')
         email = request.forms.get('email')
-        senha = request.foms.get('senha')
+        senha = request.forms.get('senha')
         tipo = request.forms.get('tipo')
 
-        # TODO: Usuario.cadastrar_usuario(nome,email,senha,tipo)
+        if tipo == 'cliente':
+            Aluno_cliente(nome, email, senha)
+        elif tipo == 'prestador':
+            Aluno_prestador(nome, email, senha)
         redirect('/login')
 
     def perfil(self):

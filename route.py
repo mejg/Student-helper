@@ -27,7 +27,7 @@ def logout():    return ctl.render('logout')
 @app.route('/cadastrar', method='get')
 def cadastrar(): return ctl.render('cadastrar')
 
-@app.route('/cadastrar', method='post')
+@app.route('/cadastrar_post', method='post')
 def cadastrar_post(): return ctl.render('cadastrar_post')
 
 #rotas perfil:

@@ -24,5 +24,31 @@
             "saldo": 0.0,
             "transacoes": null
         }
+    },
+    {
+        "id": "982e2173-2980-4bcb-a092-052ce59f5163",
+        "nome": "zaza1",
+        "email": null,
+        "tipo": "cliente",
+        "senha_hash": "0ac134c6b9050ba5c640c88c149071fd10f10f29d7015805e65046cd74ca836f",
+        "salt": "d78f5e83d0c7a31263b54c40a0f76a9b",
+        "self.pedidos": [],
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
+    },
+    {
+        "id": "02778eaf-747a-40eb-adcf-39b284dd2fc7",
+        "nome": "duda",
+        "email": "duda@",
+        "tipo": "cliente",
+        "senha_hash": "25b9ff56842fdb55bbb2583b271e4a22d4a071d5ab1940e88c04953dcbc6ab11",
+        "salt": "03856cb2f710928300e81cf300f56589",
+        "self.pedidos": [],
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
     }
 ]
