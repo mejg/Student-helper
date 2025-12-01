@@ -17,7 +17,7 @@ def home_page():    return ctl.render('home_page')
 @app.route('/login', method="get")
 def login():    return ctl.render('login')
 
-@app.route('/login', method="post")
+@app.route('/login_post', method="post")
 def login_post():   return ctl.render('login_post')
 
 @app.route('/logout', method="get")

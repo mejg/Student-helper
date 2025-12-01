@@ -29,9 +29,6 @@ class Usuario():
     def autenticar(cls,email,senha):
         from app.models.Aluno_prestador import Aluno_prestador
         from app.models.Aluno_cliente import Aluno_cliente
-        for u in cls.todos_usuarios:
-            if u.email==email and u.verificar_senha(senha):
-                return u
         for u in Aluno_prestador.todos_os_prestadores:
             if u.email==email and u.verificar_senha(senha):
                 return ('prestador',u)

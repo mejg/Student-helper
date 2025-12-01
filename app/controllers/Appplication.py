@@ -41,10 +41,11 @@ class Application():
 
     def home_page(self):
         usuario = request.get_cookie('usuario_id')
+        return template("app/views/home_page.tpl")
         # tipo=request.get_cookie('tipo_usuario')
-        if not usuario:
-            return template("app/views/home_page.tpl")
-        return template('app/views/home_page_logada.tpl')
+        # if not usuario:
+        #     return template("app/views/home_page.tpl")
+        # return template('app/views/home_page_logada.tpl')
 
     def pedidos_criar(self):
         return template('app/views/pedidos_criar.tpl')
@@ -81,12 +82,13 @@ class Application():
         senha = request.forms.get('senha')
         resultado = Usuario.autenticar(email,senha)
         if not resultado:
-            return "usuário não encontrado"
-        if resultado:
-            tipo,usuario = resultado
-            response.set_cookie('usuario_id',str(usuario.id))
-            response.set_cookie('tipo_usuario',tipo)
-            redirect('/')
+            print('erro de login')
+            redirect('/login')
+            return
+        tipo,user_data = resultado
+        response.set_cookie('usuario_id',str(user_data.id))
+        response.set_cookie('tipo_usuario',tipo)
+        redirect('/')
         # if usuario:
         #     response.set_cookie('usuario_id',str(usuario.id))
         #     redirect('/')
