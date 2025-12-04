@@ -44,7 +44,7 @@ class Application():
         return template("app/views/home_page.tpl")
         # tipo=request.get_cookie('tipo_usuario')
         # if not usuario:
-        #     return template("app/views/home_page.tpl")
+        #     return template("app/views/home_page")
         # return template('app/views/home_page_logada.tpl')
 
     def pedidos_criar(self):

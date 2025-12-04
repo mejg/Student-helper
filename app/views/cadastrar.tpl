@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,7 +9,6 @@
 </head>
 <body>
 <h2>Casdastro</h2>
-<!-- para enviar você coloca dentro de form e um destino para ele-->
 <form action="/cadastrar_post" method="post"><!-- action="arquivo.php" method="get" -->
     <label for="campo_nome">Nome:</label>
     <input id="campo_nome" type="text" name="nome" placeholder="digite seu nome" required>
@@ -31,7 +30,6 @@
     </select><br><br><br>
     <input type="submit" value="Cadastrar">
     <br><br>
-    <!--required= deixa o campo obrigatório para envio-->
 </form>
 
 </body>

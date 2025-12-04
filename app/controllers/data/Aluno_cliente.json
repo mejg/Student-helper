@@ -50,5 +50,18 @@
             "saldo": 0.0,
             "transacoes": null
         }
+    },
+    {
+        "id": "00734586-b658-4f12-95ff-d30b08319313",
+        "nome": "gabriel2",
+        "email": "gabriel@gmail.com",
+        "tipo": "cliente",
+        "senha_hash": "da8079f8e8694a6e048d11bd664b8411ae3a4a70d18f4b1b6105769b6a15d1b8",
+        "salt": "3c104c6279d9da6df19dd1fda0e1a664",
+        "self.pedidos": [],
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
     }
 ]

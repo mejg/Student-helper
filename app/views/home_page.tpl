@@ -28,8 +28,10 @@
                 </div>
                 
                 <div class="nav-actions">
-                    <button class="btn btn-outline">Login</button>
-                    <button class="btn btn-primary">Cadastrar</button>
+<!--                    <button class="btn btn-outline" href="login.tpl" >Login</button>-->
+                    <a href="/login" class="btn btn-outline">Login</a>
+<!--                    <button class="btn btn-primary">Cadastrar</button>-->
+                    <a href="/cadastrar" class="btn btn-primary">Cadastrar</a>
                 </div>
                 
                 <button class="mobile-menu-btn">
