@@ -6,8 +6,8 @@ from app.controllers.DataRecord import DataRecord
 class Aluno_cliente(Usuario):
     todos_clientes=[]
     db=DataRecord("Aluno_cliente.json")
-    def __init__(self,nome,email,senha,tipo="cliente",from_dict=False,salt=None,senha_hash=None):
-        super().__init__(nome,email,senha,tipo,from_dict=from_dict, salt=salt, senha_hash=senha_hash)
+    def __init__(self, nome, email, senha, tipo="cliente", from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None):
+        super().__init__(nome, email, senha, tipo, from_dict=from_dict, salt=salt, senha_hash=senha_hash, instituicao=instituicao, curso=curso, periodo=periodo)
         Aluno_cliente.todos_clientes.append(self)
         self.carteira=Carteira()
         self.pedidos=[]
@@ -26,6 +26,9 @@ class Aluno_cliente(Usuario):
             'senha_hash': self.senha_hash,
             'salt': self.salt.hex(),
             'self.pedidos': self.pedidos,
+            'instituicao': self.instituicao,
+            'curso': self.curso,
+            'periodo': self.periodo,
             'carteira': self.carteira.to_dict()
         }
 
@@ -38,7 +41,10 @@ class Aluno_cliente(Usuario):
             tipo=data['tipo'],
             from_dict=True,
             salt=data['salt'],
-            senha_hash=data['senha_hash'])
+            senha_hash=data['senha_hash'],
+            instituicao=data.get('instituicao'),
+            curso=data.get('curso'),
+            periodo=data.get('periodo'))
         obj.carteira=Carteira.from_dict(data['carteira'])
         return obj
 

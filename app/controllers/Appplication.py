@@ -38,19 +38,59 @@ class Application():
     def render(self, page):
         content = self.pages.get(page)
         return content()
+    
+    def get_user_data(self):
+        usuario_id = request.get_cookie('usuario_id')
+        tipo = request.get_cookie('tipo_usuario')
+        if not usuario_id:
+            return None, None
+        import uuid
+        try:
+            usuario_uuid = uuid.UUID(usuario_id)
+        except Exception:
+            usuario_uuid = usuario_id
+        usuario = Usuario.buscar_id(usuario_uuid)
+        return usuario, tipo
 
     def home_page(self):
-        usuario = request.get_cookie('usuario_id')
-        return template("app/views/home_page.tpl")
-        # tipo=request.get_cookie('tipo_usuario')
-        # if not usuario:
-        #     return template("app/views/home_page")
-        # return template('app/views/home_page_logada.tpl')
+        usuario, tipo = self.get_user_data()
+    
+        if not usuario:
+            return template("app/views/home_page")
+        if tipo == 'cliente':
+            return self.cliente_dashboard(usuario)
+        elif tipo == 'prestador':
+            return self.prestador_dashboard(usuario)
+        
+        return redirect('/logout')
+    
+    def cliente_dashboard(self, usuario):
+        pedidos_do_cliente = [p for p in PedidoAcademico.todos_pedidos if str(p.autor_id) == str(usuario.id)]
+        return template("app/views/cliente_dashboard.tpl", user=usuario, pedidos=pedidos_do_cliente)
+    
+    def prestador_dashboard(self, usuario):
+        pedidos_abertos = [p for p in PedidoAcademico.todos_pedidos if p.status == PedidoAcademico.status_aberto]
+
+
+        pedidos_aceitos = [p for p in PedidoAcademico.todos_pedidos if p.prestador_id and str(p.prestador_id) == str(usuario.id)]
+
+
+        try:
+            print(f"[DEBUG prestador_dashboard] usuario={usuario.id} pedidos_abertos={len(pedidos_abertos)} pedidos_aceitos={len(pedidos_aceitos)}")
+        except Exception:
+            pass
+
+        return template("app/views/prestador_dashboard.tpl", user=usuario, pedidos=pedidos_abertos, pedidos_aceitos=pedidos_aceitos)
 
     def pedidos_criar(self):
         return template('app/views/pedidos_criar.tpl')
 
     def pedidos_criar_post(self):
+        usuario, tipo = self.get_user_data()
+        if not usuario or tipo != 'cliente':
+            # se não estiver logado como cliente, redireciona ao login
+            return redirect('/login')
+
         dados_do_form = {
             'titulo': request.forms.get('titulo'),
             'descricao': request.forms.get('descricao'),
@@ -59,11 +99,8 @@ class Application():
             'prazo': request.forms.get('prazo'),
         }
 
-        try:
-            criador_id = str(Usuario.todos_usuarios[0].email) #Substituir pelo ID do usuário logado tipo request.get_cookie('usuario_id')
-        except IndexError:
-            criador_id = "Teste cliente" #pra não travar com a lista de usu vazia
-        #aqui vai fazer a validação do salamento e vai chamar algo do tipo self.models.save() do banco, ai se vc quiser mudar, pode mudar não sei muito bem como vc vai fazer, sorry, ai se for mudar, tem que mudar em pedidos tbm
+        criador_id = str(usuario.id)
+
         novo_pedido, erro = PedidoAcademico.criar_e_salvar(
             criador_id = criador_id,
             **dados_do_form
@@ -72,7 +109,13 @@ class Application():
         if erro:
             return f"Erro 400: {erro}", 400
 
-        return redirect('/pedidos')
+        try:
+            print(f"[DEBUG] Novo pedido criado: titulo='{novo_pedido.titulo}' id={novo_pedido.id}")
+            print(f"[DEBUG] Total pedidos: {len(PedidoAcademico.todos_pedidos)}")
+        except Exception as e:
+            print("[DEBUG] Falha no print de debug:", e)
+
+        return redirect('/')
 
     def login(self):
         return template('app/views/login.tpl')
@@ -83,12 +126,12 @@ class Application():
         resultado = Usuario.autenticar(email,senha)
         if not resultado:
             print('erro de login')
-            redirect('/login')
-            return
+            return redirect('/login')
+            
         tipo,user_data = resultado
         response.set_cookie('usuario_id',str(user_data.id))
         response.set_cookie('tipo_usuario',tipo)
-        redirect('/')
+        return redirect('/')
         # if usuario:
         #     response.set_cookie('usuario_id',str(usuario.id))
         #     redirect('/')
@@ -103,15 +146,25 @@ class Application():
         return template('app/views/cadastrar.tpl')
 
     def cadastrar_post(self):
+        print("[DEBUG] cadastrar_post ENTROU")
         nome = request.forms.get('nome')
         email = request.forms.get('email')
         senha = request.forms.get('senha')
         tipo = request.forms.get('tipo')
+        instituicao = request.forms.get('instituicao')
+        curso = request.forms.get('curso')
+        periodo = request.forms.get('periodo')
+
+        try:
+            print(f"[DEBUG cadastrar_post] nome={nome} email={email} tipo={tipo}")
+        except Exception:
+            pass
 
         if tipo == 'cliente':
-            Aluno_cliente(nome, email, senha)
+            Aluno_cliente(nome, email, senha, instituicao=instituicao, curso=curso, periodo=periodo)
         elif tipo == 'prestador':
-            Aluno_prestador(nome, email, senha)
+            Aluno_prestador(nome, email, senha, instituicao=instituicao, curso=curso, periodo=periodo)
+    
         redirect('/login')
 
     def perfil(self):

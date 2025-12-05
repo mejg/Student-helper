@@ -4,8 +4,8 @@ from app.models.Usuario import Usuario
 class Aluno_prestador(Usuario):
     todos_os_prestadores=[]
     db=DataRecord("Aluno_prestador.json")
-    def __init__(self,nome, email,senha, tipo='prestador',from_dict=False, salt=None, senha_hash=None):
-        super().__init__(nome,email,senha,tipo,from_dict=from_dict, salt=salt, senha_hash=senha_hash)
+    def __init__(self, nome, email, senha, tipo='prestador', from_dict=False, salt=None, senha_hash=None,instituicao=None, curso=None, periodo=None):
+        super().__init__(nome, email, senha, tipo, from_dict=from_dict, salt=salt, senha_hash=senha_hash, instituicao=instituicao, curso=curso, periodo=periodo)
         Aluno_prestador.todos_os_prestadores.append(self)
         if not from_dict:
             self.db.add(self)
@@ -25,12 +25,26 @@ class Aluno_prestador(Usuario):
             'tipo': self.tipo,
             'senha_hash': self.senha_hash,
             'salt': self.salt.hex(),
+            'instituicao': self.instituicao,
+            'curso': self.curso,
+            'periodo': self.periodo,
 
         }
 
     @classmethod
     def from_dict(cls,data):
-        return cls(data['nome'],data['email'],senha=None,tipo=data['tipo'], from_dict=True, salt=data['salt'], senha_hash=data['senha_hash'])
+        return cls(
+        nome=data['nome'],
+        email=data['email'],
+        senha=None,
+        tipo=data['tipo'],
+        from_dict=True,
+        salt=data['salt'],
+        senha_hash=data['senha_hash'],
+        instituicao=data.get('instituicao'),
+        curso=data.get('curso'),
+        periodo=data.get('periodo')
+    )
 
     @classmethod
     def load_from_file(cls):

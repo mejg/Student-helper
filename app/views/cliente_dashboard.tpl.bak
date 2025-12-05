@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos | Student Help</title>
+    <link rel="stylesheet" href="/static/CSS/cliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <span class="brand-name">STUDENT HELP</span>
+                </div>
+                <div class="nav-actions">
+                    <a href="/pedidos" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Novo Pedido
+                    </a>
+                    <a href="/prestador" class="btn btn-outline">
+                        <i class="fas fa-exchange-alt"></i> Modo Prestador
+                    </a>
+                    <button class="btn btn-outline" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+            <!-- Conteúdo Principal - Pedidos -->
+            <section class="content">
+                <div class="content-header">
+                    <div class="header-left">
+                        <h1><i class="fas fa-tasks"></i> Meus Pedidos</h1>
+                        <p class="subtitle">Acompanhe e gerencie todos os seus pedidos acadêmicos</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Buscar por título, matéria...">
+                        </div>
+                        <div class="filters">
+                            <div class="sort-dropdown">
+                                <select id="sortSelect">
+                                    <option value="recentes">Mais Recentes</option>
+                                    <option value="antigos">Mais Antigos</option>
+                                    <option value="valor_desc">Maior Valor</option>
+                                    <option value="valor_asc">Menor Valor</option>
+                                    <option value="prazo">Prazo Próximo</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-outline" id="filterBtn">
+                                <i class="fas fa-filter"></i> Filtros
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filtros de Status -->
+                <div class="status-quick-filter">
+                    <button class="status-filter-btn active" data-status="todos">
+                        <i class="fas fa-layer-group"></i> Todos
+                    </button>
+                    <button class="status-filter-btn" data-status="aberto">
+                        <i class="fas fa-hourglass-start"></i> Aberto
+                    </button>
+                    <button class="status-filter-btn" data-status="em_andamento">
+                        <i class="fas fa-spinner"></i> Em Andamento
+                    </button>
+                    <button class="status-filter-btn" data-status="concluido">
+                        <i class="fas fa-check-circle"></i> Concluído
+                    </button>
+                    <button class="status-filter-btn" data-status="cancelado">
+                        <i class="fas fa-times-circle"></i> Cancelado
+                    </button>
+                    <button class="status-filter-btn" data-status="avaliacao">
+                        <i class="fas fa-star"></i> Aguardando Avaliação
+                    </button>
+                </div>
+                
+                <!-- Lista de Pedidos -->
+                <div class="pedidos-lista">
+                    <!-- Pedido 1 -->
+                    <div class="pedido-item" data-status="em_andamento" data-valor="200" data-prazo="3">
+                        <div class="pedido-main">
+                            <div class="pedido-info">
+                                <div class="pedido-header">
+                                    <span class="pedido-materia">
+                                        <i class="fas fa-code"></i> Programação
+                                    </span>
+                                    <div class="pedido-status-group">
+                                        <span class="pedido-status status-em_andamento">
+                                            <i class="fas fa-spinner"></i> EM ANDAMENTO
+                                        </span>
+                                        <span class="pedido-priority">
+                                            <i class="fas fa-exclamation-triangle"></i> Alta Prioridade
+                                        </span>
+                                    </div>
+                                </div>
+                                <h3 class="pedido-titulo">Sistema de cadastro em Java com interface gráfica</h3>
+                                <p class="pedido-descricao">Desenvolvimento de sistema completo de cadastro de alunos com interface gráfica em Java Swing. Requisitos: CRUD completo, validações, relatórios em PDF, conexão com MySQL...</p>
+                                <div class="pedido-detalhes">
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <strong>R$ 200,00</strong>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Entrega: <strong>3 dias (25/12)</strong></span>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-user-check"></i>
+                                        <span>Prestador: <strong>Maria Santos</strong></span>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Iniciado: <strong>22/12</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pedido-prestador">
+                                <div class="prestador-info">
+                                    <div class="prestador-avatar">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div class="prestador-details">
+                                        <span class="prestador-name">Maria Santos</span>
+                                        <span class="prestador-rating">
+                                            <i class="fas fa-star"></i> 4.8 (15 avaliações)
+                                        </span>
+                                        <div class="prestador-contact">
+                                            <button class="btn-contact">
+                                                <i class="fas fa-comments"></i> Chat
+                                            </button>
+                                            <button class="btn-contact">
+                                                <i class="fas fa-phone"></i> Chamar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pedido-actions">
+                                    <button class="btn btn-outline btn-sm btn-acompanhar">
+                                        <i class="fas fa-eye"></i> Acompanhar
+                                    </button>
+                                    <button class="btn btn-primary btn-sm btn-chat">
+                                        <i class="fas fa-comment-dots"></i> Mensagem
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pedido-progress">
+                            <div class="progress-header">
+                                <span>Progresso do Trabalho</span>
+                                <span class="progress-percent">65%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <div class="progress-dates">
+                                <span>Iniciado: 22/12</span>
+                                <span>Prazo: 25/12</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pedido 2 -->
+                    <div class="pedido-item" data-status="aberto" data-valor="80" data-prazo="urgente">
+                        <div class="pedido-main">
+                            <div class="pedido-info">
+                                <div class="pedido-header">
+                                    <span class="pedido-materia">
+                                        <i class="fas fa-calculator"></i> Cálculo I
+                                    </span>
+                                    <div class="pedido-status-group">
+                                        <span class="pedido-status status-aberto">
+                                            <i class="fas fa-hourglass-start"></i> ABERTO
+                                        </span>
+                                        <span class="pedido-badge badge-urgente">
+                                            <i class="fas fa-clock"></i> URGENTE
+                                        </span>
+                                    </div>
+                                </div>
+                                <h3 class="pedido-titulo">Resolução de 10 exercícios de derivadas</h3>
+                                <p class="pedido-descricao">Preciso da resolução detalhada de 10 exercícios de derivadas para amanhã pela manhã. Todos os exercícios devem ter passo a passo completo e explicações das regras utilizadas...</p>
+                                <div class="pedido-detalhes">
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <strong>R$ 80,00</strong>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Entrega: <strong>Amanhã 10:00</strong></span>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-users"></i>
+                                        <span><strong>3</strong> candidatos</span>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span><strong>12</strong> visualizações</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pedido-candidatos">
+                                <div class="candidatos-header">
+                                    <h4><i class="fas fa-user-friends"></i> Candidatos (3)</h4>
+                                    <button class="btn btn-sm btn-outline">
+                                        <i class="fas fa-users"></i> Ver Todos
+                                    </button>
+                                </div>
+                                <div class="candidatos-list">
+                                    <div class="candidato-item">
+                                        <div class="candidato-avatar">
+                                            <i class="fas fa-user-graduate"></i>
+                                        </div>
+                                        <div class="candidato-details">
+                                            <span class="candidato-name">Carlos Silva</span>
+                                            <span class="candidato-rating">
+                                                <i class="fas fa-star"></i> 4.5
+                                            </span>
+                                        </div>
+                                        <button class="btn btn-sm btn-primary">
+                                            <i class="fas fa-check"></i> Selecionar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="pedido-actions">
+                                    <button class="btn btn-outline btn-sm btn-editar">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                    <button class="btn btn-accent btn-sm btn-cancelar">
+                                        <i class="fas fa-times"></i> Cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pedido-extra">
+                            <div class="urgency-warning">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Pedido urgente! Apenas <strong>18 horas</strong> restantes.</span>
+                            </div>
+                            <div class="action-suggestions">
+                                <button class="btn-suggestion">
+                                    <i class="fas fa-bolt"></i> Aumentar Valor
+                                </button>
+                                <button class="btn-suggestion">
+                                    <i class="fas fa-share"></i> Compartilhar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pedido 3 -->
+                    <div class="pedido-item" data-status="concluido" data-valor="120" data-prazo="0">
+                        <div class="pedido-main">
+                            <div class="pedido-info">
+                                <div class="pedido-header">
+                                    <span class="pedido-materia">
+                                        <i class="fas fa-gavel"></i> Direito Civil
+                                    </span>
+                                    <div class="pedido-status-group">
+                                        <span class="pedido-status status-concluido">
+                                            <i class="fas fa-check-circle"></i> CONCLUÍDO
+                                        </span>
+                                        <span class="pedido-badge badge-avaliar">
+                                            <i class="fas fa-star"></i> AGUARDANDO AVALIAÇÃO
+                                        </span>
+                                    </div>
+                                </div>
+                                <h3 class="pedido-titulo">Resumo completo de Direito Civil para prova final</h3>
+                                <p class="pedido-descricao">Resumo abrangente dos principais tópicos de Direito Civil, incluindo: Pessoas Naturais e Jurídicas, Bens, Fatos Jurídicos, Contratos. Formato: PDF com índice e destaques...</p>
+                                <div class="pedido-detalhes">
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <strong>R$ 120,00</strong>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Concluído: <strong>Hoje 14:30</strong></span>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-user-check"></i>
+                                        <span>Prestador: <strong>Ana Costa</strong></span>
+                                    </div>
+                                    <div class="detalhe-item">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Arquivos: <strong>3 entregues</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pedido-conclusao">
+                                <div class="conclusao-header">
+                                    <h4><i class="fas fa-clipboard-check"></i> Trabalho Entregue</h4>
+                                    <div class="entrega-status">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Entregue dentro do prazo</span>
+                                    </div>
+                                </div>
+                                <div class="arquivos-entregues">
+                                    <div class="arquivo-item">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Resumo_Direito_Civil.pdf</span>
+                                        <button class="btn-download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                    <div class="arquivo-item">
+                                        <i class="fas fa-file-word"></i>
+                                        <span>Resumo_Completo.docx</span>
+                                        <button class="btn-download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="pedido-actions">
+                                    <button class="btn btn-outline btn-sm btn-ver">
+                                        <i class="fas fa-eye"></i> Ver Entrega
+                                    </button>
+                                    <button class="btn btn-primary btn-sm btn-avaliar">
+                                        <i class="fas fa-star"></i> Avaliar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pedido-satisfacao">
+                            <div class="satisfacao-survey">
+                                <h5>Como foi sua experiência?</h5>
+                                <div class="satisfacao-buttons">
+                                    <button class="btn-satisfacao">
+                                        <i class="fas fa-smile"></i> Excelente
+                                    </button>
+                                    <button class="btn-satisfacao">
+                                        <i class="fas fa-smile"></i> Boa
+                                    </button>
+                                    <button class="btn-satisfacao">
+                                        <i class="fas fa-meh"></i> Regular
+                                    </button>
+                                    <button class="btn-satisfacao">
+                                        <i class="fas fa-frown"></i> Ruim
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sidebar do Perfil à Direita -->
+            <aside class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar-large">
+                            <i class="fas fa-user-graduate"></i>
+                            <span class="online-status"></span>
+                        </div>
+                        <div class="profile-details">
+                        <h3><i class="fas fa-graduation-cap"></i> Formação</h3>
+                        <!-- 🟢 DADOS DINÂMICOS: Nome, Email, Curso -->
+                        <p class="detail-item">Nome: {{user.nome}}</p>
+                        <p class="detail-item">Email: {{user.email}}</p>
+                        <p class="detail-item">ID: {{user.id}}</p>
+                        <p class="detail-item">Tipo: {{user.tipo}}</p>
+                        
+                        <h3><i class="fas fa-history"></i> Histórico Recente</h3>
+                        <h3><i class="fas fa-history"></i> Histórico Recente</h3>
+                        
+                        % if pedidos:
+                        <p>Você tem {{len(pedidos)}} pedidos ativos.</p>
+                        % else:
+                        <p>Nenhum pedido criado ainda.</p>
+                        % end
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-hourglass-start"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">2</span>
+                                <span class="stat-label">Abertos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Em Andamento</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Concluídos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <h3><i class="fas fa-graduation-cap"></i> Formação</h3>
+                        <p class="detail-item">Engenharia da Computação - USP</p>
+                        <p class="detail-item">3º período</p>
+                        
+                        <h3><i class="fas fa-history"></i> Histórico Recente</h3>
+                        <div class="history-items">
+                            <div class="history-item">
+                                <i class="fas fa-plus-circle history-icon created"></i>
+                                <div class="history-content">
+                                    <p>Pedido "Sistema Java" criado</p>
+                                    <span class="history-time">2 dias atrás</span>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <i class="fas fa-user-check history-icon selected"></i>
+                                <div class="history-content">
+                                    <p>Maria selecionada para "Cálculo"</p>
+                                    <span class="history-time">5 dias atrás</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preferencias">
+                        <h3><i class="fas fa-cog"></i> Preferências</h3>
+                        <div class="preferencia-item">
+                            <span>Notificações por email</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preferencia-item">
+                            <span>Lembretes de prazo</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="btn btn-primary btn-block" id="newOrderBtn">
+                            <i class="fas fa-plus"></i> Novo Pedido
+                        </button>
+                        <button class="btn btn-outline btn-block" id="editProfileBtn">
+                            <i class="fas fa-edit"></i> Editar Perfil
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Widget de Suporte -->
+                <div class="support-widget">
+                    <h3><i class="fas fa-headset"></i> Precisa de Ajuda?</h3>
+                    <p class="support-text">Nossa equipe está aqui para ajudar você com qualquer dúvida sobre seus pedidos.</p>
+                    <div class="support-actions">
+                        <button class="btn btn-outline btn-block">
+                            <i class="fas fa-question-circle"></i> Central de Ajuda
+                        </button>
+                        <button class="btn btn-primary btn-block">
+                            <i class="fas fa-comments"></i> Falar com Suporte
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer igual à homepage -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        STUDENT HELP
+                    </div>
+                    <p class="footer-description">
+                        Conectando estudantes para compartilhar conhecimento e 
+                        superar desafios acadêmicos juntos.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <a href="#inicio">Início</a>
+                    <a href="#materias">Matérias</a>
+                    <a href="#sobre">Sobre Nós</a>
+                    <a href="#avaliacoes">Avaliações</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Suporte</h3>
+                    <a href="#">Central de Ajuda</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contato</a>
+                    <a href="#">Tutoriais</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">DMCA</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 STUDENT HELP. Todos os direitos reservados.</p>
+                <p>Feito com ❤️ para estudantes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/JS/cliente.js"></script>
+</body>
+</html>

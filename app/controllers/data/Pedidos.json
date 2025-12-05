@@ -50,5 +50,57 @@
         "status": "Aberto (Aguardando prestador)",
         "data_ criacao": "2025-11-22 18:44:03",
         "data_conclusao": null
+    },
+    {
+        "id": "690aa174-1dad-4efc-870c-58ca6237937b",
+        "titulo": "po",
+        "materia": "direito_penal",
+        "descricao": "ji",
+        "valor": 5000.01,
+        "prazo": "2025-12-24",
+        "autor_id": "7a19beb4-baa5-42f9-9f22-9a8e5f7e015e",
+        "prestador_id": null,
+        "status": "Aberto (Aguardando prestador)",
+        "data_ criacao": "2025-12-04 21:54:32",
+        "data_conclusao": null
+    },
+    {
+        "id": "2664cf43-907d-4b55-a8d7-344255a0f6f7",
+        "titulo": "Atividade de MD1",
+        "materia": "logica",
+        "descricao": "A atividade precisa me fazer passar\r\n",
+        "valor": 7878.0,
+        "prazo": "2025-12-12",
+        "autor_id": "7a19beb4-baa5-42f9-9f22-9a8e5f7e015e",
+        "prestador_id": null,
+        "status": "Aberto (Aguardando prestador)",
+        "data_ criacao": "2025-12-04 22:13:40",
+        "data_conclusao": null
+    },
+    {
+        "id": "858774df-810b-4fce-ac8f-6d9a35767cd7",
+        "titulo": "resolucionar minha burrice",
+        "materia": "oo",
+        "descricao": "oi",
+        "valor": 1000.02,
+        "prazo": "2025-12-05",
+        "autor_id": "7a19beb4-baa5-42f9-9f22-9a8e5f7e015e",
+        "prestador_id": null,
+        "status": "Aberto (Aguardando prestador)",
+        "data_ criacao": "2025-12-04 22:15:45",
+        "data_conclusao": null
+    },
+    {
+        "id": "882cb652-de7d-4dea-8ee2-b169852e18fe",
+        "titulo": "rabo",
+        "materia": "direito_penal",
+        "descricao": "meu pao na sua mÃ£o",
+        "valor": 488.01,
+        "prazo": "2025-12-04",
+        "autor_id": "98689bdf-b8ed-4422-a5f7-9736e6c328e9",
+        "prestador_id": null,
+        "status": "Aberto (Aguardando prestador)",
+        "data_ criacao": "2025-12-04 22:58:43",
+        "data_conclusao": null
     }
 ]

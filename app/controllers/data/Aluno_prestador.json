@@ -1,3 +1,21 @@
 [
-
+    {
+        "id": "d5430b5b-0dad-41bd-958c-2d73d2402fb6",
+        "nome": "eloa",
+        "email": "eloa@gmail.com",
+        "tipo": "prestador",
+        "senha_hash": "39759da4ef8c2c9dc63b020b2f176d26f9cffbc0fb8c47b2b5f9d147b1e19088",
+        "salt": "e9a56025bb08f234207565c827c70ac6"
+    },
+    {
+        "id": "15040e33-8d1d-481c-93c0-567bd9a625c0",
+        "nome": "gata",
+        "email": "gata@gmail.com",
+        "tipo": "prestador",
+        "senha_hash": "046843e386ee0271d6d16ef9cc76d347f0ae049e61f993507485d8b6a6698899",
+        "salt": "92c83ce74ecf5aa12b401d138f188f2e",
+        "instituicao": null,
+        "curso": null,
+        "periodo": null
+    }
 ]

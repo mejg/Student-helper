@@ -4,11 +4,14 @@ import hashlib
 
 class Usuario():
     todos_usuarios=[]
-    def __init__(self,nome,email,senha,tipo=None,from_dict=False,salt=None,senha_hash=None):
-        self.__id=uuid.uuid4()
-        self.nome=nome
-        self.email=email
-        self.tipo=tipo
+    def __init__(self, nome, email, senha, tipo=None, from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None):
+        self.__id = uuid.uuid4()
+        self.nome = nome
+        self.email = email
+        self.tipo = tipo
+        self.instituicao = instituicao
+        self.curso = curso
+        self.periodo = periodo
         #senha criptografada:
         if from_dict:
             self.salt=bytes.fromhex(salt)
@@ -39,8 +42,13 @@ class Usuario():
 
     @classmethod
     def buscar_id(cls,id):
+        import uuid
+        try:
+            id_conv = uuid.UUID(str(id))
+        except Exception:
+            id_conv = str(id)
         for u in cls.todos_usuarios:
-            if u.id==id:
+            if u.id == id_conv or str(u.id) == str(id_conv):
                 return u
         return None
 

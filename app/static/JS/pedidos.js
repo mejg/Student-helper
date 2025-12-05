@@ -23,42 +23,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('pedidoForm');
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const titulo = document.getElementById('titulo').value.trim();
         const materia = document.getElementById('materia').value;
         const valor = document.getElementById('valor').value;
         const prazo = document.getElementById('prazo').value;
         const descricao = document.getElementById('descricao').value.trim();
-        
+
         if (!titulo) {
             alert('Por favor, insira um título para o pedido.');
             return;
         }
-        
+
         if (!materia) {
             alert('Por favor, selecione uma matéria.');
             return;
         }
-        
+
         if (!valor || parseFloat(valor) <= 0) {
             alert('Por favor, insira um valor válido.');
             return;
         }
-        
+
         if (!prazo) {
             alert('Por favor, selecione um prazo.');
             return;
         }
-        
+
         if (!descricao) {
             alert('Por favor, insira uma descrição para o pedido.');
             return;
         }
-        
-
-        alert('Pedido publicado com sucesso!');
-
+        console.log('[PEDIDOS] Formulário validado — submetendo ao servidor');
+        form.submit();
     });
+}else {
+    console.warn('[PEDIDOS] Formulário de pedido não encontrado na página');
+}
     
     const valorInput = document.getElementById('valor');
     valorInput.addEventListener('input', function() {

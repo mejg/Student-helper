@@ -63,5 +63,47 @@
             "saldo": 0.0,
             "transacoes": null
         }
+    },
+    {
+        "id": "5af234fa-07d6-4383-b295-fca97b9e6828",
+        "nome": "auau",
+        "email": "auau@gmail.com",
+        "tipo": "cliente",
+        "senha_hash": "61b8b19137ba28902ac80b5f89ffd6393976a964730968a069edb376e01014ce",
+        "salt": "e0735a301fdc294111828ecc8b6db72b",
+        "self.pedidos": [],
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
+    },
+    {
+        "id": "316cad72-be06-4561-ae52-7a755003c5c9",
+        "nome": "Karollyna EloÃ¡h",
+        "email": "eloah@gmail.com",
+        "tipo": "cliente",
+        "senha_hash": "f8ee75c819560a4e90b7382df207af8fe84f87c640008f404a673c825efe514b",
+        "salt": "341b7b24bf242c3fbbc53bd81082cd40",
+        "self.pedidos": [],
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
+    },
+    {
+        "id": "9454a338-752b-4221-bbc9-186835bf1863",
+        "nome": "auau1",
+        "email": "auau1@gmail.com",
+        "tipo": "cliente",
+        "senha_hash": "9662cf5968326025a3d8e568afa6f012f7f543abf68dd619fd8de0a0b6cbf3b9",
+        "salt": "0ee764af1c85bc66c6752757a6a35c67",
+        "self.pedidos": [],
+        "instituicao": null,
+        "curso": null,
+        "periodo": null,
+        "carteira": {
+            "saldo": 0.0,
+            "transacoes": null
+        }
     }
 ]
