@@ -11,5 +11,31 @@
         "status": "Aberto (Aguardando prestador)",
         "data_ criacao": "2025-12-10 18:38:02",
         "data_conclusao": null
+    },
+    {
+        "id": "011f9acf-3ad2-4d3b-ae94-2f2571bc9531",
+        "titulo": "Atividade de MD1",
+        "materia": "logica",
+        "descricao": "sim",
+        "valor": 0.07,
+        "prazo": "2025-12-06",
+        "autor_id": "9454a338-752b-4221-bbc9-186835bf1863",
+        "prestador_id": null,
+        "status": "Aberto (Aguardando prestador)",
+        "data_ criacao": "2025-12-05 00:26:46",
+        "data_conclusao": null
+    },
+    {
+        "id": "51e81f3e-0c85-4d60-ba76-a8661251a7ae",
+        "titulo": "questionario de oo",
+        "materia": "oo",
+        "descricao": "perguntas de uml",
+        "valor": 25.0,
+        "prazo": "2025-12-12",
+        "autor_id": "58086111-c5ed-49b0-a258-d4c2fec65632",
+        "prestador_id": null,
+        "status": "Aberto (Aguardando prestador)",
+        "data_ criacao": "2025-12-08 23:00:05",
+        "data_conclusao": null
     }
 ]

@@ -7,9 +7,10 @@ from app.controllers.DataRecord import DataRecord
 class Aluno_cliente(Usuario):
     todos_clientes=[]
     db=DataRecord("Aluno_cliente.json")
-    def __init__(self, nome, email, senha, tipo="cliente", from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None, id=None):
-        super().__init__(nome, email, senha, tipo, from_dict=from_dict, salt=salt, senha_hash=senha_hash, instituicao=instituicao, curso=curso, periodo=periodo,id=id)
+    def __init__(self, nome, email, senha, tipo="cliente", from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None):
+        super().__init__(nome, email, senha, tipo, from_dict=from_dict, salt=salt, senha_hash=senha_hash, instituicao=instituicao, curso=curso, periodo=periodo)
         Aluno_cliente.todos_clientes.append(self)
+        self.carteira=Carteira()
         self.pedidos=[]
         # self.pedidos_criados=[]
         # self.pedidos_em_andamento=[]
