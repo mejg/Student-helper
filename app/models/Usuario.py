@@ -4,8 +4,8 @@ import hashlib
 
 class Usuario():
     todos_usuarios=[]
-    def __init__(self, nome, email, senha, tipo=None, from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None):
-        self.__id = uuid.uuid4()
+    def __init__(self, nome, email, senha, tipo=None, from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None,id=None):
+        self.__id = id or uuid.uuid4()
         self.nome = nome
         self.email = email
         self.tipo = tipo
@@ -62,11 +62,11 @@ class Usuario():
         tentativa_senha=hashlib.sha256(self.salt+str(senha).encode()).hexdigest()
         return tentativa_senha == self.senha_hash
 
-    def alterar_senha(self,senha_atual,senha_nova):
-        if self.verificar_senha(senha_atual):
-            self.senha_hash=hashlib.sha256(self.salt+ str(senha_nova).encode()).hexdigest()
-        else:
-            print(f'senha errada')
+    # def alterar_senha(self,senha_atual,senha_nova):
+    #     if self.verificar_senha(senha_atual):
+    #         self.senha_hash=hashlib.sha256(self.salt+ str(senha_nova).encode()).hexdigest()
+    #     else:
+    #         print(f'senha errada')
 
     def excluir_usuario(self):
         if self in self.__class__.todos_usuarios:
@@ -77,3 +77,4 @@ class Usuario():
     def listar_todos(cls):
         for u in cls.todos_usuarios:
             print(u.__repr__())
+

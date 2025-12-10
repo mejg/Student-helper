@@ -20,7 +20,7 @@ def login():    return ctl.render('login')
 @app.route('/login_post', method="post")
 def login_post():   return ctl.render('login_post')
 
-@app.route('/logout', method="get")
+@app.route('/logout', method=['get', 'post'])
 def logout():    return ctl.render('logout')
 
 #rotas cadastro:

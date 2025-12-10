@@ -1,14 +1,15 @@
-from models.Usuario import Usuario
-from models.Aluno_cliente import Aluno_cliente
-from models.Aluno_prestador import Aluno_prestador
-from models.Pedidos import PedidoAcademico
+from app.models.Usuario import Usuario
+from app.models.Aluno_cliente import Aluno_cliente
+from app.models.Aluno_prestador import Aluno_prestador
+from app.models.Pedidos import PedidoAcademico
 
 # p1=Aluno_cliente('zayra','zayra@',12345)
-p2=Aluno_cliente('duda','duda@',1234)
-# p1=Aluno_cliente.buscar_por_email('gabriel@')
-# print(p1.id)
+# p2=Aluno_cliente('duda','duda@',1234)
+p1=Aluno_cliente.buscar_por_email('zayra@')
+print(p1.id)
 # print(p1.senha_hash)
-# print(p1.verificar_senha(123456))
+print(p1.verificar_senha(123))
+p1.alterar_dados('zayra2','zayra2@')
 # p1.alterar_senha(12345,123)
 # print(p1.verificar_senha(123))
 # p3=Aluno_cliente('gabriel','gabriel@', 123456)

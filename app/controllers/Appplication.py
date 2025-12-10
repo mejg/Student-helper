@@ -140,6 +140,8 @@ class Application():
 
     def logout(self):
         response.delete_cookie('usuario_id')
+        response.delete_cookie('tipo_usuario')
+        print('logout')
         redirect('/login')
 
     def cadastrar(self):

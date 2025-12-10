@@ -1,4 +1,5 @@
-from app.models.Carteira import Carteira
+import hashlib
+
 from app.models.Usuario import Usuario
 from app.controllers.DataRecord import DataRecord
 
@@ -6,10 +7,9 @@ from app.controllers.DataRecord import DataRecord
 class Aluno_cliente(Usuario):
     todos_clientes=[]
     db=DataRecord("Aluno_cliente.json")
-    def __init__(self, nome, email, senha, tipo="cliente", from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None):
-        super().__init__(nome, email, senha, tipo, from_dict=from_dict, salt=salt, senha_hash=senha_hash, instituicao=instituicao, curso=curso, periodo=periodo)
+    def __init__(self, nome, email, senha, tipo="cliente", from_dict=False, salt=None, senha_hash=None, instituicao=None, curso=None, periodo=None, id=None):
+        super().__init__(nome, email, senha, tipo, from_dict=from_dict, salt=salt, senha_hash=senha_hash, instituicao=instituicao, curso=curso, periodo=periodo,id=id)
         Aluno_cliente.todos_clientes.append(self)
-        self.carteira=Carteira()
         self.pedidos=[]
         # self.pedidos_criados=[]
         # self.pedidos_em_andamento=[]
@@ -28,8 +28,7 @@ class Aluno_cliente(Usuario):
             'self.pedidos': self.pedidos,
             'instituicao': self.instituicao,
             'curso': self.curso,
-            'periodo': self.periodo,
-            'carteira': self.carteira.to_dict()
+            'periodo': self.periodo
         }
 
     @classmethod
@@ -44,8 +43,8 @@ class Aluno_cliente(Usuario):
             senha_hash=data['senha_hash'],
             instituicao=data.get('instituicao'),
             curso=data.get('curso'),
-            periodo=data.get('periodo'))
-        obj.carteira=Carteira.from_dict(data['carteira'])
+            periodo=data.get('periodo'),
+            id=data['id'])
         return obj
 
 
@@ -65,5 +64,17 @@ class Aluno_cliente(Usuario):
     def listar_clientes(cls):
         for c in cls.todos_clientes:
             print(c.__repr__())
+
+    def alterar_senha(self,senha_atual,senha_nova):
+        if self.verificar_senha(senha_atual):
+            self.senha_hash=hashlib.sha256(self.salt+ str(senha_nova).encode()).hexdigest()
+            self.db.update_por_id(self)
+        else:
+            print(f'senha errada')
+
+    def alterar_dados(self,nome,email):
+        self.nome=nome
+        self.email=email
+        self.db.update_por_id(self)
 
 Aluno_cliente.load_from_file()

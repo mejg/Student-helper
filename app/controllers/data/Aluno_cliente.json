@@ -1,109 +1,26 @@
 [
     {
-        "id": "7345c2fd-53dc-471e-b821-a2e41add9ced",
-        "nome": "zayra",
-        "email": "zayra@",
-        "tipo": "cliente",
-        "senha_hash": "f4c59468e135d9da753a232fc4dccd0dbf9293e9cf3749b6474bd1648e0361b8",
-        "salt": "7dac0f88d02d824c945a06e62159c839",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "78e48bd5-1b14-4d67-866a-1019abf01e83",
-        "nome": "gabriel",
-        "email": "gabriel@",
-        "tipo": "cliente",
-        "senha_hash": "4821205b848e278f7d488d6aabd8063fd6ac6538c9017a4a27c4af8e7f161c4b",
-        "salt": "f406b364aa380950c8b97a6b377afb61",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "02778eaf-747a-40eb-adcf-39b284dd2fc7",
-        "nome": "duda",
-        "email": "duda@",
-        "tipo": "cliente",
-        "senha_hash": "25b9ff56842fdb55bbb2583b271e4a22d4a071d5ab1940e88c04953dcbc6ab11",
-        "salt": "03856cb2f710928300e81cf300f56589",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "6573382f-7ad5-4990-bf21-2fb32d4bd2d2",
+        "id": "62ab7327-688b-4ee0-876c-958c2fefc977",
         "nome": "zaza",
         "email": "zayra.moraes2005@gmail.com",
         "tipo": "cliente",
-        "senha_hash": "2471d6d3f8907edb1eb34548a2b38551ebbe9403bf8742dd2def612b16fc7a1b",
-        "salt": "687219c650940fc7f41bb7c0ccfcb9a5",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "00734586-b658-4f12-95ff-d30b08319313",
-        "nome": "gabriel2",
-        "email": "gabriel@gmail.com",
-        "tipo": "cliente",
-        "senha_hash": "da8079f8e8694a6e048d11bd664b8411ae3a4a70d18f4b1b6105769b6a15d1b8",
-        "salt": "3c104c6279d9da6df19dd1fda0e1a664",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "5af234fa-07d6-4383-b295-fca97b9e6828",
-        "nome": "auau",
-        "email": "auau@gmail.com",
-        "tipo": "cliente",
-        "senha_hash": "61b8b19137ba28902ac80b5f89ffd6393976a964730968a069edb376e01014ce",
-        "salt": "e0735a301fdc294111828ecc8b6db72b",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "316cad72-be06-4561-ae52-7a755003c5c9",
-        "nome": "Karollyna EloÃ¡h",
-        "email": "eloah@gmail.com",
-        "tipo": "cliente",
-        "senha_hash": "f8ee75c819560a4e90b7382df207af8fe84f87c640008f404a673c825efe514b",
-        "salt": "341b7b24bf242c3fbbc53bd81082cd40",
-        "self.pedidos": [],
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
-    },
-    {
-        "id": "9454a338-752b-4221-bbc9-186835bf1863",
-        "nome": "auau1",
-        "email": "auau1@gmail.com",
-        "tipo": "cliente",
-        "senha_hash": "9662cf5968326025a3d8e568afa6f012f7f543abf68dd619fd8de0a0b6cbf3b9",
-        "salt": "0ee764af1c85bc66c6752757a6a35c67",
+        "senha_hash": "70f32efd944a97438226d7544b82390d95dff07bf891c4c311663e4e0ec2e58a",
+        "salt": "badf6b0ba7cf83cf9846edba38bbb608",
         "self.pedidos": [],
         "instituicao": null,
         "curso": null,
-        "periodo": null,
-        "carteira": {
-            "saldo": 0.0,
-            "transacoes": null
-        }
+        "periodo": null
+    },
+    {
+        "id": "5279d425-3456-4faa-a161-c9aea796b126",
+        "nome": "zayra2",
+        "email": "zayra2@",
+        "tipo": "cliente",
+        "senha_hash": "948691ace588f624560f182db16ba2a07738c68c4c48a05d5efdf9daaec59dd1",
+        "salt": "3778f7709106c831970dbe24197828c7",
+        "self.pedidos": [],
+        "instituicao": null,
+        "curso": null,
+        "periodo": null
     }
 ]
