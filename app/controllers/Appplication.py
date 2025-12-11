@@ -27,7 +27,8 @@ class Application():
             'pedidos_criar_post': self.pedidos_criar_post,
             'pedidos_deletar_post': self.pedidos_delete,
             'avaliar_get':self.avaliar_get,
-            'avaliar_post': self.avaliar_post
+            'avaliar_post': self.avaliar_post,
+            'chat' : self.chat
         }
 
         # Usuario.todos_usuarios.clear()
