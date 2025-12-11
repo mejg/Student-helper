@@ -7,7 +7,7 @@
         "valor": 10.0,
         "prazo": "2025-12-12",
         "autor_id": "62ab7327-688b-4ee0-876c-958c2fefc977",
-        "prestador_id": null,
+        "prestador_id": "b59cd9fb-40c5-4477-b454-a0a3310c8dc8",
         "status": "Aberto (Aguardando prestador)",
         "data_ criacao": "2025-12-10 18:38:02",
         "data_conclusao": null

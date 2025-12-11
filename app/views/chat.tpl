@@ -5,31 +5,40 @@
     <title>Chat WebSocket</title>
 </head>
 <body>
-    <h2>Chat</h2>
+<h2>Chat</h2>
 
-    <div id="messages" style="border: 1px solid gray; height: 200px; overflow-y: scroll;"></div>
+<div id="messages" style="border: 1px solid gray; height: 200px; overflow-y: scroll;"></div>
 
-    <input id="msg" placeholder="Digite algo..." />
-    <button onclick="sendMsg()">Enviar</button>
+<input id="msg" placeholder="Digite algo..."/>
+<button onclick="sendMsg()">Enviar</button>
 
-    <script>
-        const socket = new WebSocket("ws://localhost:8765");
+<script>
+    let idPedido = "{{idPedido}}";
+    let socket = new WebSocket("ws://localhost:8765");
 
-        const messagesDiv = document.getElementById("messages");
+    socket.onopen = () => {
+        // Envia o idPedido na primeira mensagem
+        socket.send(JSON.stringify({idPedido: idPedido}));
+    };
 
-        socket.onopen = () => {
-            messagesDiv.innerHTML += "<div><i>Conectado ao servidor...</i></div>";
-        };
+    socket.onmessage = (event) => {
+        let div = document.createElement("div");
+        div.textContent = event.data;
+        document.getElementById("messages").appendChild(div);
+    };
 
-        socket.onmessage = (event) => {
-            messagesDiv.innerHTML += `<div>${event.data}</div>`;
-        };
+    function sendMsg() {
+        let text = document.getElementById("msg").value;
+        if (text.trim() === "") return;
 
-        function sendMsg() {
-            const text = document.getElementById("msg").value;
-            socket.send(text);
-            document.getElementById("msg").value = "";
-        }
-    </script>
+        // Mostra sua mensagem localmente
+        let div = document.createElement("div");
+        div.textContent = "Você: " + text;
+        document.getElementById("messages").appendChild(div);
+
+        socket.send(text);
+        document.getElementById("msg").value = "";
+    }
+</script>
 </body>
 </html>

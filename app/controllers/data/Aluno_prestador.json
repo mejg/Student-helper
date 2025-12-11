@@ -1,3 +1,13 @@
 [
-
+    {
+        "id": "b59cd9fb-40c5-4477-b454-a0a3310c8dc8",
+        "nome": "gabriel",
+        "email": "gabriel@gmail.com",
+        "tipo": "prestador",
+        "senha_hash": "39a0488249849b4fd6e597b51e4249f0027797a0aa7e466268122ca5c6cfc026",
+        "salt": "3a95c0d4cfd5105742d6254215575f06",
+        "instituicao": null,
+        "curso": null,
+        "periodo": null
+    }
 ]

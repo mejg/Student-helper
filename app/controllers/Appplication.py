@@ -39,7 +39,10 @@ class Application():
     def render(self, page):
         content = self.pages.get(page)
         return content()
-    
+
+    def chat(self):
+        return template('app/views/chat.tpl')
+
     def get_user_data(self):
         usuario_id = request.get_cookie('usuario_id')
         tipo = request.get_cookie('tipo_usuario')
