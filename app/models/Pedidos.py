@@ -12,15 +12,15 @@ class PedidoAcademico():
     status_concluido = "Concluído (Aguardando avaliação)"
     status_cancelado = "Cancelado"
 
-    def __init__(self, titulo, materia, descricao, valor, prazo, autor_id, status= None,from_json=False):
-        self.id = str(uuid.uuid4()) 
+    def __init__(self, titulo, materia, descricao, valor, prazo, autor_id, status= None,prestador=None,from_json=False, id= None):
+        self.id = id or str(uuid.uuid4())
         self.titulo = titulo
         self.materia = materia
         self.descricao = descricao
         self.valor = valor
         self.prazo = prazo
         self.autor_id = str(autor_id) #str pra dá certo com o ID de teste temporário
-        self.prestador_id = None
+        self.prestador_id = prestador or None
         self.status = status if status else self.status_aberto
         self.data_criacao = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.data_conclusao = None
@@ -70,6 +70,7 @@ class PedidoAcademico():
     @classmethod
     def from_dict(cls, data): 
         return cls(
+            id = data['id'],
             titulo=data['titulo'],
             materia= data['materia'],
             descricao = data['descricao'],
@@ -77,6 +78,7 @@ class PedidoAcademico():
             autor_id = str(data['autor_id']), #depois altera para uuid.UUID
             prazo = data['prazo'],
             status = data['status'],
+            prestador=data['prestador_id'],
             from_json=True
         )
         
@@ -92,6 +94,17 @@ class PedidoAcademico():
     @classmethod
     def buscar_por_status(cls, status):
         return [p for p in cls.todos_pedidos if p.status == status]
+
+    @classmethod
+    def buscar_por_id(cls,id):
+        import uuid
+        try:
+            id_conv = uuid.UUID(str(id))
+        except Exception:
+            id_conv = str(id)
+        for p in cls.todos_pedidos:
+            if p.id == id_conv or str(p.id) == str(id_conv):
+                return p
         
     def __repr__(self):
         return f"ID {self.id[:8]} - Pedidos: {self.titulo} - Status: {self.status}"

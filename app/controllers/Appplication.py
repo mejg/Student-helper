@@ -27,7 +27,8 @@ class Application():
             'pedidos_criar_post': self.pedidos_criar_post,
             'pedidos_deletar_post': self.pedidos_delete,
             'avaliar_get':self.avaliar_get,
-            'avaliar_post': self.avaliar_post
+            'avaliar_post': self.avaliar_post,
+            'chat' : self.chat
         }
 
         # Usuario.todos_usuarios.clear()
@@ -38,7 +39,10 @@ class Application():
     def render(self, page):
         content = self.pages.get(page)
         return content()
-    
+
+    def chat(self):
+        return template('app/views/chat.tpl')
+
     def get_user_data(self):
         usuario_id = request.get_cookie('usuario_id')
         tipo = request.get_cookie('tipo_usuario')
