@@ -116,6 +116,7 @@
                                         </div>
                                     </div>
                                     <h3 class="pedido-titulo">{{pedido.titulo}}</h3>
+
                                     <p class="pedido-descricao">{{pedido.descricao[:200]}}...</p>
                                     <div class="pedido-detalhes">
                                         <div class="detalhe-item">
@@ -226,6 +227,9 @@
                                 </div>
                             </div>
                             % end
+                                                <a href="/chat/{{pedido.id}}" class="btn btn-outline btn-sm btn-chat" title="Abrir chat do pedido">
+                                                <i class="fas fa-comments"></i> Chat
+                                            </a>
                         </div>
                         % end
                     % else:
@@ -299,6 +303,7 @@
                                     % else:
                                     0
                                     % end
+
                                 </span>
                                 <span class="stat-label">Concluídos</span>
                             </div>

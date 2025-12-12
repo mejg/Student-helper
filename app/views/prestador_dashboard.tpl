@@ -264,6 +264,10 @@
                                             <i class="fas fa-check-circle"></i> CONCLUÍDO
                                         </span>
                                         % end
+                                                                                    <!-- botão Chat -->
+                                            <a href="/chat/{{pedido.id}}" class="btn btn-outline btn-sm btn-chat" title="Abrir chat do pedido">
+                                                <i class="fas fa-comments"></i> Chat
+                                            </a>
                                     </div>
                                 </div>
                             </div>
