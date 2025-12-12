@@ -31,7 +31,6 @@
 
     <main class="dashboard">
         <div class="container">
-            <!-- Conteúdo Principal - Pedidos -->
             <section class="content">
                 <div class="content-header">
                     <div class="header-left">
@@ -59,8 +58,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Filtros de Status -->
+
                 <div class="status-quick-filter">
                     <button class="status-filter-btn active" data-status="todos">
                         <i class="fas fa-layer-group"></i> Todos
@@ -77,12 +75,8 @@
                     <button class="status-filter-btn" data-status="cancelado">
                         <i class="fas fa-times-circle"></i> Cancelado
                     </button>
-                    <button class="status-filter-btn" data-status="avaliacao">
-                        <i class="fas fa-star"></i> Aguardando Avaliação
-                    </button>
                 </div>
-                
-                <!-- Lista de Pedidos -->
+
                 <div class="pedidos-lista">
                     % if pedidos:
                         % for pedido in pedidos:
@@ -113,7 +107,7 @@
                                             % else:
                                             <span class="pedido-status">{{pedido.status}}</span>
                                             % end
-                                            
+
                                             % if pedido.prazo == 'urgente' or pedido.prazo == 'hoje':
                                             <span class="pedido-badge badge-urgente">
                                                 <i class="fas fa-clock"></i> URGENTE
@@ -140,7 +134,7 @@
                                         % end
                                     </div>
                                 </div>
-                                
+
                                 % if pedido.status == 'aberto':
                                 <div class="pedido-candidatos">
                                     <div class="candidatos-header">
@@ -193,7 +187,7 @@
                                 </div>
                                 % end
                             </div>
-                            
+
                             % if pedido.status == 'em_andamento':
                             <div class="pedido-progress">
                                 <div class="progress-header">
@@ -247,7 +241,6 @@
                 </div>
             </section>
 
-            <!-- Sidebar do Perfil à Direita -->
             <aside class="profile-sidebar">
                 <div class="profile-card">
                     <div class="profile-header">
@@ -263,7 +256,7 @@
                             </span>
                         </div>
                     </div>
-                    
+
                     <div class="profile-stats">
                         <div class="stat-card">
                             <div class="stat-icon">
@@ -311,13 +304,21 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="profile-details">
                         <h3><i class="fas fa-info-circle"></i> Informações</h3>
                         <p class="detail-item"><strong>ID:</strong> {{user.id}}</p>
                         <p class="detail-item"><strong>Tipo:</strong> {{user.tipo}}</p>
                         <p class="detail-item"><strong>Email:</strong> {{user.email}}</p>
-                        
+
+                        <h3><i class="fas fa-graduation-cap"></i> Informações Acadêmicas</h3>
+                        % if user.curso:
+                        <p class="detail-item">{{user.curso}}</p>
+                        % end
+                        % if user.periodo:
+                        <p class="detail-item">{{user.periodo}}º período</p>
+                        % end
+
                         <h3><i class="fas fa-history"></i> Histórico Recente</h3>
                         <div class="history-items">
                             % if pedidos and len(pedidos) > 0:
@@ -341,7 +342,7 @@
                             % end
                         </div>
                     </div>
-                    
+
                     <div class="preferencias">
                         <h3><i class="fas fa-cog"></i> Preferências</h3>
                         <div class="preferencia-item">
@@ -359,18 +360,17 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="profile-actions">
                         <a href="/pedidos_criar" class="btn btn-primary btn-block" id="newOrderBtn">
                             <i class="fas fa-plus"></i> Novo Pedido
                         </a>
-                        <button class="btn btn-outline btn-block" id="editProfileBtn">
+                        <a href="/perfil" class="btn btn-outline btn-block" id="editProfileBtn">
                             <i class="fas fa-edit"></i> Editar Perfil
-                        </button>
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Widget de Suporte -->
+
                 <div class="support-widget">
                     <h3><i class="fas fa-headset"></i> Precisa de Ajuda?</h3>
                     <p class="support-text">Nossa equipe está aqui para ajudar você com qualquer dúvida sobre seus pedidos.</p>
@@ -387,7 +387,6 @@
         </div>
     </main>
 
-    <!-- Footer igual à homepage -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -397,7 +396,7 @@
                         STUDENT HELP
                     </div>
                     <p class="footer-description">
-                        Conectando estudantes para compartilhar conhecimento e 
+                        Conectando estudantes para compartilhar conhecimento e
                         superar desafios acadêmicos juntos.
                     </p>
                     <div class="social-links">
@@ -415,7 +414,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Links Rápidos</h3>
                     <a href="#inicio">Início</a>
@@ -423,7 +422,7 @@
                     <a href="#sobre">Sobre Nós</a>
                     <a href="#avaliacoes">Avaliações</a>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Suporte</h3>
                     <a href="#">Central de Ajuda</a>
@@ -431,7 +430,7 @@
                     <a href="#">Contato</a>
                     <a href="#">Tutoriais</a>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Legal</h3>
                     <a href="#">Termos de Uso</a>
@@ -440,7 +439,7 @@
                     <a href="#">DMCA</a>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 STUDENT HELP. Todos os direitos reservados.</p>
                 <p>Feito com ❤️ para estudantes</p>

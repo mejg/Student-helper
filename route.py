@@ -41,7 +41,11 @@ def cadastrar_post(): return ctl.render('cadastrar_post')
 
 # rotas perfil:
 @app.route('/perfil', method='get')  # arrumar rota dinamica e de edit
-def perfil(): return ctl.render('perfil')
+def perfil():
+    return ctl.render('perfil')
+
+@app.route('/perfil_post', method='post')
+def perfil_post(): return ctl.render('perfil_post')
 
 
 # rotas pedidos:
@@ -65,20 +69,18 @@ def pedidos_edit(): return ctl.render('pedidos_edit')
 def pedidos_edit_post(): return ctl.render('pedidos_edit_post')
 
 
-@app.route('/pedidos_aceitar/<pedido_id:int>', method='post')
-def pedidos_aceitar(): return ctl.render('pedidos_aceitar')
+@app.route('/pedidos_aceitar/<pedido_id>',method=[ 'post'])
+def pedidos_aceitar_handler(pedido_id):
+    print(pedido_id)
+    return ctl.pedidos_aceitar(pedido_id)
 
 
-@app.route('/pedidos-delete/<pedido_id:int>', method=['get', 'post'])
+@app.route('/pedidos_concluir/<pedido_id>',method='post')
+def pedidos_concluir_handler(pedido_id): return ctl.pedidos_concluir(pedido_id)
+
+
+@app.route( '/pedidos-delete/<pedido_id>',method =['get','post'])
 def pedidos_del(pedido_id): return ctl.pedidos_delete(pedido_id)
-
-
-@app.route('/avaliar', method='get')
-def avaliar_get(): return ctl.render('avaliar_get')
-
-
-@app.route('/avaliar', method='post')
-def avaliar_post(): return ctl.render('avaliar_post')
 
 
 @app.route('/chat/<idPedido>')

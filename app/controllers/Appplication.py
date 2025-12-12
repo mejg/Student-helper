@@ -19,15 +19,17 @@ class Application():
             'cadastrar': self.cadastrar,
             'cadastrar_post': self.cadastrar_post,
             'perfil': self.perfil,
+            'perfil_post': self.perfil_post,
+            'senha_edit': self.senha_edit,
+            'senha_edit_post': self.senha_edit_post,
             'pedidos': self.pedidos,
             'pedidos_criar': self.pedidos_criar,
+            'pedidos_criar_post': self.pedidos_criar_post,
             'pedidos_edit': self.pedidos_edit,
             'pedidos_edit_post': self.pedidos_edit_post,
             'pedidos_aceitar':self.pedidos_aceitar,
-            'pedidos_criar_post': self.pedidos_criar_post,
-            'pedidos_deletar_post': self.pedidos_delete,
-            'avaliar_get':self.avaliar_get,
-            'avaliar_post': self.avaliar_post,
+            'pedidos_concluir':self.pedidos_concluir,
+            'pedidos_delete': self.pedidos_delete,
             'chat' : self.chat
         }
 
@@ -174,11 +176,59 @@ class Application():
         redirect('/login')
 
     def perfil(self):
-        usuario_id = request.get_cookie('usuario_id')
-        # if not ususario_id:
-        #     redirect('/login')
-        # usuario=Usuario.buscar_usuario(usuario_id)#TODO:buscar_usuario
-        # return template('/perfil', usuario=usuario)#passar essa variavel pro html eu acho
+        usuario_id, tipo_usuario = self.get_user_data()
+
+        if not usuario_id:
+            redirect('/login')
+
+        return template('app/views/perfil_edit.tpl', user=usuario_id, erro=None)
+
+    def perfil_post(self):
+        usuario, tipo = self.get_user_data()
+
+        if not usuario:
+            return redirect('/login')
+
+        novo_nome = request.forms.get('nome')
+        novo_email = request.forms.get('email')
+
+        try:
+            usuario.alterar_dados(novo_nome, novo_email)
+            return redirect('/')
+        except Exception as e:
+            print(e)
+            print(f"Erro no perfil post, Falha ao salvar: {e}")
+            return template('app/views/perfil_edit.tpl', user=usuario,
+                            erro="Erro ao salvar perfil. O email pode já estar em uso.")
+
+    def senha_edit(self):
+        usuario, _ = self.get_user_data()
+
+        if not usuario:
+            return redirect('/login')
+        return template('app/views/senha_edit.tpl', user=usuario, erro=None)
+
+    def senha_edit_post(self):
+
+        usuario, _ = self.get_user_data()
+
+        if not usuario:
+            return redirect('/login')
+
+        senha_atual = request.forms.get('senha_atual')
+        senha_nova = request.forms.get('senha_nova')
+        senha_confirma = request.forms.get('senha_confirma')
+
+        if senha_nova != senha_confirma:
+            return template('app/views/senha_edit.tpl', user=usuario,
+                            erro="A nova senha e a confirmação não coincidem.")
+
+        sucesso, erro_msg = usuario.alterar_senha(senha_atual, senha_nova)
+
+        if sucesso:
+            return redirect('/')
+        else:
+            return template('app/views/senha_edit.tpl', user=usuario, erro=erro_msg)
 
     def pedidos(self):
         pass
@@ -199,18 +249,46 @@ class Application():
         criador = request.get_cookie('usuario_id')
         # Usuario.editar_pedido #TODO
 
-    def pedidos_aceitar(self):
 
-        pass
+    def pedidos_aceitar(self, pedido_id):
+        prestador, tipo = self.get_user_data()
+        print('chguei em pedidos_aceitar')
+        if not prestador or tipo != 'prestador':
+            return redirect('/login')
 
-    def pedidos_delete(self,id_pedido):
+        pedido = PedidoAcademico.buscar_por_id(pedido_id)
+        #aqui ele captura o pedido pelo id
+
+        if not pedido:
+            return f"Erro 404: Pedido {pedido_id} não encontrado", 404
+
+        sucesso, erro = pedido.aceitar_pedido(prestador.id)
+
+        if sucesso:
+            return redirect('/')
+        else:
+            return f"Erro 400: {erro}", 400
+
+    def pedidos_concluir(self, pedido_id):
+        usuario, tipo = self.get_user_data()
+
+        if not usuario:
+            return redirect('/login')
+
+        pedido = next((p for p in PedidoAcademico.todos_pedidos if str(p.id) == str(pedido_id)), None)
+
+        if not pedido:
+            return f"Erro 404: Pedido {pedido_id} não encontrado", 404
+
+        if str(pedido.prestador_id) != str(usuario.id) and str(pedido.autor_id) != str(usuario.id):
+            return f"Erro 403: Você não tem permissão para concluir este pedido.", 403
+
+        sucesso, erro = pedido.concluir_pedido()
+
+        if sucesso:
+            return redirect('/')
+        else:
+            return f"Erro 400: {erro}", 400
+
+    def pedidos_delete(self, id_pedido):
         return template('app/views/view_teste.tpl', id_pedido_tpl=id_pedido)
-
-
-    def avaliar_get(self):
-        return template('app/views/avaliar')
-
-    def avaliar_post(self,id_pedido):
-        pass
-        #Pedido.add_avaliacao() #TODO
-        # return template()#igual ao do delete

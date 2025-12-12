@@ -58,12 +58,26 @@ class Aluno_prestador(Usuario):
         for p in cls.todos_os_prestadores:
             print(p.__repr__())
 
-    def alterar_senha(self,senha_atual,senha_nova):
+    # def alterar_senha(self,senha_atual,senha_nova):
+    #     if self.verificar_senha(senha_atual):
+    #         self.senha_hash=hashlib.sha256(self.salt+ str(senha_nova).encode()).hexdigest()
+    #         self.db.update_por_id(self)
+    #     else:
+    #         print(f'senha errada')
+    def alterar_senha(self, senha_atual, senha_nova):
+
         if self.verificar_senha(senha_atual):
-            self.senha_hash=hashlib.sha256(self.salt+ str(senha_nova).encode()).hexdigest()
-            self.db.update_por_id(self)
+            try:
+
+                self.senha_hash = hashlib.sha256(self.salt + str(senha_nova).encode()).hexdigest()
+                self.db.update_por_id(self)
+                return True, None
+
+            except Exception as e:
+                print(f"[ERRO PERSISTÊNCIA] Falha ao salvar senha do usuário {self.id}: {e}")
+                return False, "Falha na persistência da nova senha."
         else:
-            print(f'senha errada')
+            return False, "Senha atual incorreta."
 
     def alterar_dados(self,nome,email):
         self.nome=nome
