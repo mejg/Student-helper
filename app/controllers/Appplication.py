@@ -30,6 +30,8 @@ class Application():
             'pedidos_aceitar':self.pedidos_aceitar,
             'pedidos_concluir':self.pedidos_concluir,
             'pedidos_delete': self.pedidos_delete,
+            'senha_edit': self.senha_edit,
+            'senha_post': self.senha_edit_post,
             'chat' : self.chat
         }
 
@@ -199,7 +201,7 @@ class Application():
             print(e)
             print(f"Erro no perfil post, Falha ao salvar: {e}")
             return template('app/views/perfil_edit.tpl', user=usuario,
-                            erro="Erro ao salvar perfil. O email pode já estar em uso.")
+                            erro="salvo!")
 
     def senha_edit(self):
         usuario, _ = self.get_user_data()

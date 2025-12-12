@@ -82,6 +82,12 @@ def pedidos_concluir_handler(pedido_id): return ctl.pedidos_concluir(pedido_id)
 @app.route( '/pedidos-delete/<pedido_id>',method =['get','post'])
 def pedidos_del(pedido_id): return ctl.pedidos_delete(pedido_id)
 
+@app.route('/senha', method='get')
+def senha_edit(): return ctl.render('senha_edit')
+
+@app.route('/senha', method='post')
+def senha_edit_post(): return ctl.render('senha_edit_post')
+
 
 @app.route('/chat/<idPedido>')
 def chat(idPedido):

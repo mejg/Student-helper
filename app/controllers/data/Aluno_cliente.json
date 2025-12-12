@@ -4,7 +4,7 @@
         "nome": "zaza12356",
         "email": "zayra12345@gmail.com",
         "tipo": "cliente",
-        "senha_hash": "70f32efd944a97438226d7544b82390d95dff07bf891c4c311663e4e0ec2e58a",
+        "senha_hash": "4edcbebc262ec4f834f4dc89805e99b41718f51ec194908af7144cf825c95986",
         "salt": "badf6b0ba7cf83cf9846edba38bbb608",
         "self.pedidos": [],
         "instituicao": null,
